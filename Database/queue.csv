@@ -1,3 +1,1 @@
 id;queue_number;patient_id;doctor_id;payment_type;reason_visit;description;schedule_checked;room;price_total;status
-1;1;1;2;bpjs;sakit;sakitbanget;17-20-2020;2;50000;done
-2;2;2;tbc;cash;sakit;sakitaja;12-23-2020;2;49000;waiting
