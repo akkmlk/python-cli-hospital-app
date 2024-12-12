@@ -1,11 +1,14 @@
 import csv
 import os
 import datetime as dt
-from dashboard import menu
+import sys
+
+sys.path.insert(0, 'D://New-folder//python-cli-hospital-app//Controller//Patient')
+# import dashboard
 
 otp = 'password'
 
-temporary_log = []
+# temporary_log = []
 
 def login (fileuser, filelog):
     os.system('cls')
@@ -26,12 +29,16 @@ def login (fileuser, filelog):
             for row in data:
                 if username == row['username'] and password == row[otp]:
 
-                    if row['role'] == 'dokter':
+                    if row['role'] == 'doctor':
                         detect_user = True
                         log_csv(filelog, username, password, "Berhasil")
                         temporary( row['id'], row['name'], row['username'], row['password'], row['phone_number'], row['address'], row['religion'], row['gender'], row['place_birth'], row['date_birth'], row['age_category'], row['married'], row['last_education'], row['blood_type'], row['bpjs'], row['role'], row['doctor_category'])
                         print("login dokter berhasil")
+                        import dashboard
+                        dashboard.menu()
+                        
                         os.system('pause') # menu_dokter()
+                        return False
 
                     elif row['role'] == 'resepsionis':
                         detect_user = True
@@ -52,7 +59,6 @@ def login (fileuser, filelog):
                         detect_user = True
                         log_csv(filelog, username, password, "Berhasil")
                         print("login user berhasil")             
-                        menu()
                     
             if detect_user == False:
                 print("Log In Gagal")
@@ -85,27 +91,25 @@ def log_csv(filename, username, password, status):
             writer.writerows(data)
 
 def temporary( id, name, username, password,phone_number,address,religion,gender,place_birth,date_birth,age_category,married,last_education,blood_type,bpjs,role,doctor_category):
-    
-    temporary_log.append(
-        {
-            'id' : id,
-            'name' : name,
-            'username' : username,
-            'password' : password,
-            'phone_number' : phone_number,
-            'address' : address,
-            'religion' : religion,
-            'gender' : gender,
-            'place_birth' : place_birth,
-            'date_birth' : date_birth,
-            'age_category' : age_category,
-            'married' : married,
-            'last_education' : last_education,
-            'blood_type' : blood_type,
-            'bpjs' : bpjs,
-            'role' : role,
-            'doctor_category' : doctor_category
-        }
-    )
+    patient_data = {
+        'id' : id,
+        'name' : name,
+        'username' : username,
+        'password' : password,
+        'phone_number' : phone_number,
+        'address' : address,
+        'religion' : religion,
+        'gender' : gender,
+        'place_birth' : place_birth,
+        'date_birth' : date_birth,
+        'age_category' : age_category,
+        'married' : married,
+        'last_education' : last_education,
+        'blood_type' : blood_type,
+        'bpjs' : bpjs,
+        'role' : role,
+        'doctor_category' : doctor_category
+    }
+    return patient_data
 
 login('Database/user.csv', 'Database/log.csv')
