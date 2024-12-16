@@ -1,1 +1,7 @@
 id;queue_number;patient_id;doctor_id;payment_type;reason_visit;description;schedule_checked;room;price_total;status
+;;1;;;patah tulang;;;;;done
+;;2;;;broken home;;;;;done
+;;3;;;;;;;;waiting
+;;4;;;yteam;;;;;done
+;;5;;;;;;;;waiting
+;;1;;;two hand;;;;;done
