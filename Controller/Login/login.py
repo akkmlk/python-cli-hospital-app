@@ -36,6 +36,7 @@ def login (fileuser, filelog):
                         patient_data = temporary_login(row['id'], row['name'], row['username'], row['password'], row['phone_number'], row['address'], row['religion'], row['gender'], row['place_birth'], row['date_birth'], row['age_category'], row['married'], row['last_education'], row['blood_type'], row['bpjs'], row['role'], row['doctor_category'])
                         print("login dokter berhasil")
                         dashboard_doctor.menu_doctor(patient_data)
+                        os.system('pause')
                         return False
 
                     elif row['role'] == 'resepsionis':
@@ -64,7 +65,8 @@ def login (fileuser, filelog):
                         detect_user = False
                         log_csv(filelog, username, password, "Gagal")
                         print("Login gagal")
-                    
+                        return False
+
             if detect_user == False:
                 print("Login Gagal")
                 log_csv(filelog, username, password, "Gagal")
