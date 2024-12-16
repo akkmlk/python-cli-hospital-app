@@ -1,10 +1,8 @@
 import csv
 import os
 import datetime as dt
-import sys
-
-sys.path.insert(0, 'D://New-folder//python-cli-hospital-app//Controller//Patient')
-# import dashboard
+from Patient.dashboard import menu
+# sys.path.insert(0, 'D://New-folder//python-cli-hospital-app//Controller//Patient')
 
 otp = 'password'
 
@@ -18,7 +16,6 @@ def login (fileuser, filelog):
     while trial < 3:
         username = str(input("Masukan Username: "))
         password = str(input("Masukan Password: "))
-        
         
         with open(fileuser, mode='r') as file:
             reader = csv.DictReader(file, delimiter= ';')
@@ -34,9 +31,6 @@ def login (fileuser, filelog):
                         log_csv(filelog, username, password, "Berhasil")
                         temporary( row['id'], row['name'], row['username'], row['password'], row['phone_number'], row['address'], row['religion'], row['gender'], row['place_birth'], row['date_birth'], row['age_category'], row['married'], row['last_education'], row['blood_type'], row['bpjs'], row['role'], row['doctor_category'])
                         print("login dokter berhasil")
-                        import dashboard
-                        dashboard.menu()
-                        
                         os.system('pause') # menu_dokter()
                         return False
 
@@ -51,7 +45,7 @@ def login (fileuser, filelog):
                         detect_user = True
                         temporary( row['id'], row['name'], row['username'], row['password'], row['phone_number'], row['address'], row['religion'], row['gender'], row['place_birth'], row['date_birth'], row['age_category'], row['married'], row['last_education'], row['blood_type'], row['bpjs'], row['role'], row['doctor_category'])
                         log_csv(filelog, username, password, "Berhasil")
-                        print("login admin berhasil")                        
+                        print("login admin berhasil")           
                         os.system('pause') # menu_admin()
                     
                     else:
@@ -59,7 +53,8 @@ def login (fileuser, filelog):
                         detect_user = True
                         log_csv(filelog, username, password, "Berhasil")
                         print("login user berhasil")             
-                    
+                        menu()
+
             if detect_user == False:
                 print("Log In Gagal")
                 log_csv(filelog, username, password, "Gagal")
@@ -111,5 +106,7 @@ def temporary( id, name, username, password,phone_number,address,religion,gender
         'doctor_category' : doctor_category
     }
     return patient_data
+
+
 
 login('Database/user.csv', 'Database/log.csv')
