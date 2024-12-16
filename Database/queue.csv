@@ -1,1 +1,8 @@
 id;queue_number;patient_id;doctor_id;payment_type;reason_visit;description;schedule_checked;room;price_total;status
+1;AJU005;1;1;CASH;Mering;Parah;10-09-2023;;;waiting
+2;AJU005;1;1;CASH;Mering;Parah;10-09-2023;;;waiting
+3;AJU005;1;1;CASH;Mering;Parah;10-09-2023;;;waiting
+4;AJU005;;;93637923;Sakit Perut;Udah 2 hari;09-08-2021;;;waiting
+5;AJU005;;;CASH;sakit pinggang;-;09-01-2021;;;waiting
+6;AJU006;;;CASH;sd;d;dsd;;;waiting
+7;AJU007;;;CASH;sas;a;aksja;;;waiting
