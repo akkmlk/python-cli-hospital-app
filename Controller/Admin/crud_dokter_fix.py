@@ -167,16 +167,16 @@ if __name__ == '__main__':
         if option == '1':
             data_doctor = collect_doctor_input()
             create_doctor(data_doctor)
-        elif pilihan == '2':
+        elif option == '2':
             read_doctor()
-        elif pilihan == '3':
+        elif option == '3':
             doctor_id = input("Masukkan ID dokter yang akan diperbarui: ")
             updated_data = collect_update_input()
             update_doctor(doctor_id, updated_data)
-        elif pilihan == '4':
+        elif option == '4':
             doctor_id = input("Masukkan ID dokter yang akan dihapus: ")
             delete_doctor(doctor_id)
-        elif pilihan == '5':
+        elif option == '5':
             break
         else:
             print("Pilihan tidak valid, silakan coba lagi.")
