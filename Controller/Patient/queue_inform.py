@@ -1,11 +1,8 @@
 import csv
 import os
-from dashboard import menu
-import sys
-# sys.path.insert(0, 'Controller/Patient/dashboard.py')
-# from dashboard import menu
+from dashboard_patient import *
 
-def queue_reader(filename):
+def queue_reader(filename, patient_data):
     os.system('cls')
     with open(filename, mode='r') as file:
         
@@ -17,6 +14,4 @@ def queue_reader(filename):
 
         os.system('pause')
         os.system('cls')    
-        menu()
-
-# queue_reader('Database/queue.csv')
+    dashboard_patient.menu_patient(patient_data)

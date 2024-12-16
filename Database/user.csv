@@ -1,6 +1,5 @@
-id;name;username;password;phone_number;address;religion;gender;place_birth;date_birth;age_category;married;last_education;blood_type;bpjs;role;category
-1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;doctor;1
-id;name;username;password;phone_number;address;religion;gender;place_birth;date_birth;age_category;married;last_education;blood_type;bpjs;role;category
-1;Budi;Budi37;passbudi;0897542321761;temanggug;islam;laki-laki;magelang;07-08-2001;dewasa;Y;SMA;AB;Y;Dokter;Kandungan
-2;Jamal;Jamal87;passjamal;08087158210;YOgyakarta;Katolik;Laki-laki;Yogyakarta;06-05-1987;Dewasa;Y;S# Kedokteran;O;Y;Dokter;Bedah
-3;Lutvi;Lutvi89;passlutvi;0821652677;magelang;Islam;Laki-laki;magelang;30-09-2000;Dewasa;Y;S3 Kedokteran;O;Y;Resepsionis;
+id;name;username;password;phone_number;address;religion;gender;place_birth;date_birth;age_category;married;last_education;blood_type;bpjs;role;doctor_category
+1;akmal;kamal;kamal12;08197763;kronggahan;islam;M;Ciamis;25-07-2005;19;N;SMK;O;27382398;patient;
+2;akmal;jamal;jamal12;08197763;kronggahan;islam;M;Ciamis;09-07-2000;19;N;S3 Kedokteran;O;;doctor;
+3;akmal;samsu;samsu12;08197763;kronggahan;islam;M;Ciamis;09-07-1990;19;N;S3 Keresepsionisan;O;;resepsionis;
+3;akmal;dudung;dudung12;08197763;kronggahan;islam;M;Ciamis;09-07-1995;19;N;S3 Keadminan;O;;admin;
