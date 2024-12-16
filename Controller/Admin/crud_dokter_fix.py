@@ -25,20 +25,23 @@ def get_next_id():
     return max(valid_ids, default=0) + 1
 
 def get_required_input(prompt):
-    while True:
-        value = input(prompt)
-        if value.strip():
-            return value
+    value = input(prompt)
+    while not value.strip():
         print("Input tidak boleh kosong. Silakan coba lagi.")
+        value = input(prompt)
+    return value
 
 def get_valid_date(prompt):
-    while True:
+    date_input = input(prompt)
+    while not (len(date_input) == 10 and date_input[2] == '-' and date_input[5] == '-' and date_input[:2].isdigit() and date_input[3:5].isdigit() and date_input[6:].isdigit()):
+        print("Format tanggal salah. Harus dalam format dd-mm-yyyy. Silakan coba lagi.")
         date_input = input(prompt)
-        try:
-            datetime.strptime(date_input, "%d-%m-%Y")
-            return date_input
-        except ValueError:
-            print("Format tanggal salah. Harus dalam format dd-mm-yyyy. Silakan coba lagi.")
+    return date_input
+
+def is_valid_date_format(date_input):
+    if len(date_input) == 10 and date_input[2] == '-' and date_input[5] == '-' and date_input[:2].isdigit() and date_input[3:5].isdigit() and date_input[6:].isdigit():
+        return True
+    return False
 
 def collect_doctor_input():
     data = {}
@@ -70,18 +73,14 @@ def collect_optional_input():
     data['religion'] = input("Masukkan agama (kosongkan jika tidak ingin mengubah): ")
     data['gender'] = input("Masukkan jenis kelamin (kosongkan jika tidak ingin mengubah): ")
     data['place_birth'] = input("Masukkan tempat lahir (kosongkan jika tidak ingin mengubah): ")
-    
-    while True:
+
+    date_input = input("Masukkan tanggal lahir (dd-mm-yyyy) (kosongkan jika tidak ingin mengubah): ")
+    while date_input.strip() and not is_valid_date_format(date_input):
+        print("Format tanggal salah. Harus dalam format dd-mm-yyyy. Silakan coba lagi.")
         date_input = input("Masukkan tanggal lahir (dd-mm-yyyy) (kosongkan jika tidak ingin mengubah): ")
-        if not date_input.strip():
-            break  # Jika kosong, lanjut tanpa perubahan
-        try:
-            datetime.strptime(date_input, "%d-%m-%Y")
-            data['date_birth'] = date_input
-            break
-        except ValueError:
-            print("Format tanggal salah. Harus dalam format dd-mm-yyyy. Silakan coba lagi.")
-    
+    if date_input.strip():
+        data['date_birth'] = date_input
+
     data['age_category'] = input("Masukkan kategori usia (kosongkan jika tidak ingin mengubah): ")
     data['married'] = input("Masukkan status pernikahan (kosongkan jika tidak ingin mengubah): ")
     data['last_education'] = input("Masukkan pendidikan terakhir (kosongkan jika tidak ingin mengubah): ")
@@ -124,10 +123,9 @@ def update_doctor(doctor_id, updated_data):
             found = True
             for key, value in updated_data.items():
                 if key == 'date_birth' and value:
-                    try:
-                        datetime.strptime(value, "%d-%m-%Y")
+                    if is_valid_date_format(value):
                         row[key] = value
-                    except ValueError:
+                    else:
                         print("Format tanggal salah. Harus dalam format dd-mm-yyyy.")
                         return
                 else:
@@ -136,6 +134,7 @@ def update_doctor(doctor_id, updated_data):
     if not found:
         print(f"Data dengan ID {doctor_id} tidak ditemukan.")
         return
+
     with open(FILE_NAME, mode='w', newline='') as file:
         writer = csv.DictWriter(file, fieldnames=HEADER[0].split(';'), delimiter=';')
         writer.writeheader()
@@ -148,3 +147,9 @@ def delete_doctor(doctor_id):
     if len(new_data) == len(data):
         print(f"Data dengan ID {doctor_id} tidak ditemukan.")
         return
+
+    with open(FILE_NAME, mode='w', newline='') as file:
+        writer = csv.DictWriter(file, fieldnames=HEADER[0].split(';'), delimiter=';')
+        writer.writeheader()
+        writer.writerows(new_data)
+    print("Data dokter berhasil dihapus.")
