@@ -162,9 +162,9 @@ if __name__ == '__main__':
         print("4. Hapus data dokter")
         print("5. Keluar")
 
-        pilihan = input("Pilih menu: ")
+        option = input("Pilih menu: ")
 
-        if pilihan == '1':
+        if option == '1':
             data_doctor = collect_doctor_input()
             create_doctor(data_doctor)
         elif pilihan == '2':
