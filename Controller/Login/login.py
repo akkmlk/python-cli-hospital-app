@@ -2,9 +2,10 @@ import csv
 import os
 import datetime as dt
 import sys
-
-sys.path.insert(0, 'D://New-folder//python-cli-hospital-app//Controller//Patient')
-# import dashboard
+sys.path.insert(0, 'C://Document//University//Classroom//Semester1//Alpro//Tugas-Besar//hospital-app//Controller//Patient')
+sys.path.insert(0, 'C://Document//University//Classroom//Semester1//Alpro//Tugas-Besar//hospital-app//Controller//Doctor')
+import dashboard_patient
+import dashboard_doctor
 
 otp = 'password'
 
@@ -32,36 +33,40 @@ def login (fileuser, filelog):
                     if row['role'] == 'doctor':
                         detect_user = True
                         log_csv(filelog, username, password, "Berhasil")
-                        temporary( row['id'], row['name'], row['username'], row['password'], row['phone_number'], row['address'], row['religion'], row['gender'], row['place_birth'], row['date_birth'], row['age_category'], row['married'], row['last_education'], row['blood_type'], row['bpjs'], row['role'], row['doctor_category'])
+                        patient_data = temporary_login(row['id'], row['name'], row['username'], row['password'], row['phone_number'], row['address'], row['religion'], row['gender'], row['place_birth'], row['date_birth'], row['age_category'], row['married'], row['last_education'], row['blood_type'], row['bpjs'], row['role'], row['doctor_category'])
                         print("login dokter berhasil")
-                        import dashboard
-                        dashboard.menu()
-                        
-                        os.system('pause') # menu_dokter()
+                        dashboard_doctor.menu_doctor(patient_data)
                         return False
 
                     elif row['role'] == 'resepsionis':
                         detect_user = True
-                        temporary( row['id'], row['name'], row['username'], row['password'], row['phone_number'], row['address'], row['religion'], row['gender'], row['place_birth'], row['date_birth'], row['age_category'], row['married'], row['last_education'], row['blood_type'], row['bpjs'], row['role'], row['doctor_category'])
-                        log_csv(filelog, username, password, "Berhasil")                        
+                        temporary_login( row['id'], row['name'], row['username'], row['password'], row['phone_number'], row['address'], row['religion'], row['gender'], row['place_birth'], row['date_birth'], row['age_category'], row['married'], row['last_education'], row['blood_type'], row['bpjs'], row['role'], row['doctor_category'])
+                        log_csv(filelog, username, password, "Berhasil") 
+                        resepsionis_data = temporary_login(row['id'], row['name'], row['username'], row['password'], row['phone_number'], row['address'], row['religion'], row['gender'], row['place_birth'], row['date_birth'], row['age_category'], row['married'], row['last_education'], row['blood_type'], row['bpjs'], row['role'], row['doctor_category'])
                         print("login resepsionis berhasil")
-                        os.system('pause') # menu_resepsionis()
+                        return False                       
                     
                     elif row['role'] == 'admin':
                         detect_user = True
-                        temporary( row['id'], row['name'], row['username'], row['password'], row['phone_number'], row['address'], row['religion'], row['gender'], row['place_birth'], row['date_birth'], row['age_category'], row['married'], row['last_education'], row['blood_type'], row['bpjs'], row['role'], row['doctor_category'])
+                        temporary_login( row['id'], row['name'], row['username'], row['password'], row['phone_number'], row['address'], row['religion'], row['gender'], row['place_birth'], row['date_birth'], row['age_category'], row['married'], row['last_education'], row['blood_type'], row['bpjs'], row['role'], row['doctor_category'])
                         log_csv(filelog, username, password, "Berhasil")
-                        print("login admin berhasil")                        
-                        os.system('pause') # menu_admin()
-                    
-                    else:
-                        temporary( row['id'], row['name'], row['username'], row['password'], row['phone_number'], row['address'], row['religion'], row['gender'], row['place_birth'], row['date_birth'], row['age_category'], row['married'], row['last_education'], row['blood_type'], row['bpjs'], row['role'], row['doctor_category'])
+                        admin_data = temporary_login(row['id'], row['name'], row['username'], row['password'], row['phone_number'], row['address'], row['religion'], row['gender'], row['place_birth'], row['date_birth'], row['age_category'], row['married'], row['last_education'], row['blood_type'], row['bpjs'], row['role'], row['doctor_category'])
+                        print("login admin berhasil")
+                        return False
+                    elif row['role'] == 'patient':
+                        patient_data = temporary_login( row['id'], row['name'], row['username'], row['password'], row['phone_number'], row['address'], row['religion'], row['gender'], row['place_birth'], row['date_birth'], row['age_category'], row['married'], row['last_education'], row['blood_type'], row['bpjs'], row['role'], row['doctor_category'])
                         detect_user = True
                         log_csv(filelog, username, password, "Berhasil")
-                        print("login user berhasil")             
+                        print("login pasien berhasil")
+                        dashboard_patient.menu_patient(patient_data)
+                        return False
+                    else:
+                        detect_user = False
+                        log_csv(filelog, username, password, "Gagal")
+                        print("Login gagal")
                     
             if detect_user == False:
-                print("Log In Gagal")
+                print("Login Gagal")
                 log_csv(filelog, username, password, "Gagal")
                 trial += 1
                 os.system('pause')
@@ -90,7 +95,7 @@ def log_csv(filename, username, password, status):
             
             writer.writerows(data)
 
-def temporary( id, name, username, password,phone_number,address,religion,gender,place_birth,date_birth,age_category,married,last_education,blood_type,bpjs,role,doctor_category):
+def temporary_login(id, name, username, password,phone_number,address,religion,gender,place_birth,date_birth,age_category,married,last_education,blood_type,bpjs,role,doctor_category):
     patient_data = {
         'id' : id,
         'name' : name,

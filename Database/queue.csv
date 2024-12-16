@@ -1,8 +1,21 @@
-id;queue_number;patient_id;doctor_id;payment_type;reason_visit;description;schedule_checked;room;price_total;status
-1;AJU005;1;1;CASH;Mering;Parah;10-09-2023;;;waiting
-2;AJU005;1;1;CASH;Mering;Parah;10-09-2023;;;waiting
-3;AJU005;1;1;CASH;Mering;Parah;10-09-2023;;;waiting
-4;AJU005;;;93637923;Sakit Perut;Udah 2 hari;09-08-2021;;;waiting
-5;AJU005;;;CASH;sakit pinggang;-;09-01-2021;;;waiting
-6;AJU006;;;CASH;sd;d;dsd;;;waiting
-7;AJU007;;;CASH;sas;a;aksja;;;waiting
+id;queue_number;patient_id;doctor_id;payment_type;reason_visit;description;schedule_checked;price_total;status
+1;AJU001;1;1;CASH;Mering;Parah;10-09-2023;;waiting
+2;AJU002;1;1;CASH;Mering;Parah;10-09-2023;;waiting
+3;AJU003;1;1;CASH;Mering;Parah;10-09-2023;;waiting
+4;AJU004;;2;93637923;Sakit Perut;Udah 2 hari;09-08-2021;;verified
+5;AJU005;;;CASH;sakit pinggang;-;09-01-2021;;waiting
+6;AJU006;;;CASH;sd;d;dsd;;waiting
+7;AJU007;;;CASH;sas;a;aksja;;waiting
+8;AJU008;;2;02837625772;Mules;;09-01-2025;;verified
+9;AJU009;1;2;837672738;;;08-27-2024;;verified
+10;AJU010;1;;CASH;;;09-23-2024;;waiting
+11;AJU011;1;2;CASH;;mau sehat;08-20-2024;;verified
+12;AJU012;1;;CASH;;;09-09-2021;;waiting
+13;AJU013;;;876738483;Sakit Tenggorokan;;09-28-2024;;waiting
+14;AJU014;;;CASH;aakjs;asj;09-02-2024;;waiting
+15;AJU015;;;;meriang;;08-09-2025;;waiting
+16;AJU016;;;97632772;Sakit perut;udh 2 hari;20-08-2024;;waiting
+17;AJU017;1;;98763273829;;;27-08-2025;;waiting
+18;AJU018;1;;CASH;blood_check;;27-09-2026;;waiting
+19;AJU019;1;;87352689;urine_test;;26-08-2024;;waiting
+20;AJU020;1;;35266732;consultation;Aku lagi galau banget pak;07-10-2027;;waiting

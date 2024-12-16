@@ -1,1 +1,10 @@
-id;control_number;patient_id;control_schecule;room;doctor_id;
+id;control_number;doctor_id;patient_id;control_schedule;room
+1;CTRL001;2;1;10-01-2025;UMUM1
+2;CTRL002;2;1;10-10-2025;UMUM1
+3;CTRL003;2;1;10-10-2026;UMUM1
+4;CTRL004;2;1;12-09-2025;UMUM1
+5;CTRL005;2;1;15-09-2025;UMUM1
+6;CTRL006;2;1;10-10-2026;UMUM1
+7;CTRL007;2;;29-12-2025;UMUM2
+8;CTRL008;2;;05-02-2026;UMUM2
+9;CTRL009;2;1;18-07-2025;umum1
