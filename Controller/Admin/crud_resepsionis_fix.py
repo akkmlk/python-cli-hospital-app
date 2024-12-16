@@ -141,25 +141,25 @@ if __name__ == '__main__':
         print("4. Hapus data resepsionis")
         print("5. Keluar")
 
-        pilihan = input("Pilih menu: ")
+        option = input("Pilih menu: ")
 
-        if pilihan == '1':
+        if option == '1':
             data = collect_receptionist_input()
             create_receptionist(data)
 
-        elif pilihan == '2':
+        elif option == '2':
             read_receptionists()  
 
-        elif pilihan == '3':
+        elif option == '3':
             receptionist_id = input("Masukkan ID resepsionis yang ingin diperbarui: ")
             updated_data = collect_receptionist_input()
             update_receptionist(receptionist_id, updated_data)
 
-        elif pilihan == '4':
+        elif option == '4':
             receptionist_id = input("Masukkan ID resepsionis yang ingin dihapus: ")
             delete_receptionist(receptionist_id)
 
-        elif pilihan == '5':
+        elif option == '5':
             print("Keluar dari program.")
             break
 
