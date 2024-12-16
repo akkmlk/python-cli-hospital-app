@@ -4,7 +4,7 @@ from datetime import datetime
 
 FILE_NAME = 'Database/user.csv'
 HEADER = [
-    'id;name;username;password;phone_number;address;religion;gender;place_birth;date_birth;age_category;married;last_education;blood_type;bpjs;role;doctor_category'
+    'id;name;username;password;phone_number;address;religion;gender;place_birth;date_birth;age_category;married;last_education;blood_type;bpjs;role'
 ]
 
 def ensure_csv_exists():
@@ -77,7 +77,7 @@ def collect_update_input():
 def create_receptionist(data):
     ensure_csv_exists()
     data['id'] = str(get_next_id())
-    data['role'] = 'Resepsionis'
+    data['role'] = 'receptionis'
     if data['date_birth'] != '':
         data['date_birth'] = validate_date(data['date_birth'])
     with open(FILE_NAME, mode='a', newline='') as file:
@@ -87,7 +87,7 @@ def create_receptionist(data):
 
 def read_receptionist():
     data = read_all_data()
-    receptionist_data = [row for row in data if row['role'] == 'Resepsionis']
+    receptionist_data = [row for row in data if row['role'] == 'receptionis']
     if len(receptionist_data) == 0:
         print("Tidak ada data resepsionis.")
         return
