@@ -91,7 +91,7 @@ def collect_update_input():
 def create_doctor(data):
     ensure_csv_exists()
     data['id'] = str(get_next_id())
-    data['role'] = 'Dokter'  
+    data['role'] = 'doctor'  
     if data['date_birth']:
         data['date_birth'] = validate_date(data['date_birth'])
     with open(FILE_NAME, mode='a', newline='') as file:
@@ -103,7 +103,7 @@ def create_doctor(data):
 def read_doctor():
     data = read_all_data()
     
-    doctor_data = [row for row in data if row['role'] == 'Dokter']
+    doctor_data = [row for row in data if row['role'] == 'doctor']
     
     if not doctor_data:
         print("Tidak ada data dokter.")
@@ -114,7 +114,7 @@ def read_doctor():
     print(f"{'ID':<5}{'|':<2}{'Nama':<20}{'|':<2}{'Alamat':<20}{'|':<2}{'Agama':<10}{'|':<2}{'Gender':<15}{'|':<2}{'Tanggal Lahir':<15}{'|':<2}{'Usia':<15}{'|':<2}{'Gol Darah':<10}{'|':<2}{'BPJS':<10}{'|':<2}{'Peran':<10}{'|':<2}{'Kategori':<20}|")
     print("-"*171)
     for row in doctor_data:
-        print(f"{row['id']:<5}{'|':<2}{row['name']:<20}{'|':<2}{row['address']:<20}{'|':<2}{row['religion']:<10}{'|':<2}{row['gender']:<15}{'|':<2}{row['date_birth']:<15}{'|':<2}{row['age_category']:<15}{'|':<2}{row['blood_type']:<10}{'|':<2}{row['bpjs']:<10}{'|':<2}{row['role']:<10}{'|':<2}{row['category']:<20}|")
+        print(f"{row['id']:<5}{'|':<2}{row['name']:<20}{'|':<2}{row['address']:<20}{'|':<2}{row['religion']:<10}{'|':<2}{row['gender']:<15}{'|':<2}{row['date_birth']:<15}{'|':<2}{row['age_category']:<15}{'|':<2}{row['blood_type']:<10}{'|':<2}{row['bpjs']:<10}{'|':<2}{row['role']:<10}{'|':<2}{row['doctor_category']:<20}|")
     print("="*171)
 
 
@@ -152,7 +152,7 @@ def delete_doctor(doctor_id):
     print("Data berhasil dihapus.")
 
 
-if __name__ == '__main__':
+def main_doctor():
     ensure_csv_exists()
     while True:
         print("\nMenu:")

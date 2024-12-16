@@ -4,8 +4,10 @@ import datetime as dt
 import sys
 sys.path.insert(0, 'C://Document//University//Classroom//Semester1//Alpro//Tugas-Besar//hospital-app//Controller//Patient')
 sys.path.insert(0, 'C://Document//University//Classroom//Semester1//Alpro//Tugas-Besar//hospital-app//Controller//Doctor')
+sys.path.insert(0, 'C://Document//University//Classroom//Semester1//Alpro//Tugas-Besar//hospital-app//Controller//Admin')
 import dashboard_patient
 import dashboard_doctor
+import dashboard_admin
 
 otp = 'password'
 
@@ -53,6 +55,7 @@ def login (fileuser, filelog):
                         log_csv(filelog, username, password, "Berhasil")
                         admin_data = temporary_login(row['id'], row['name'], row['username'], row['password'], row['phone_number'], row['address'], row['religion'], row['gender'], row['place_birth'], row['date_birth'], row['age_category'], row['married'], row['last_education'], row['blood_type'], row['bpjs'], row['role'], row['doctor_category'])
                         print("login admin berhasil")
+                        dashboard_admin.menu_admin(admin_data)
                         return False
                     elif row['role'] == 'patient':
                         patient_data = temporary_login( row['id'], row['name'], row['username'], row['password'], row['phone_number'], row['address'], row['religion'], row['gender'], row['place_birth'], row['date_birth'], row['age_category'], row['married'], row['last_education'], row['blood_type'], row['bpjs'], row['role'], row['doctor_category'])

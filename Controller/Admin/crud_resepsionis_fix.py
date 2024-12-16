@@ -77,7 +77,7 @@ def create_receptionist(data):
 
 
 def read_receptionists():
-    data = [row for row in read_all_data() if row['role'] == 'Resepsionis']
+    data = [row for row in read_all_data() if row['role'] == 'resepsionis']
     if not data:
         print("Tidak ada data resepsionis.")
         return
@@ -131,7 +131,7 @@ def delete_receptionist(receptionist_id):
     print("Data resepsionis berhasil dihapus.")
 
 
-if __name__ == '__main__':
+def main_resepsionis():
     ensure_csv_exists()
     while True:
         print("\nMenu Resepsionis:")

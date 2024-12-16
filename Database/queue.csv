@@ -18,4 +18,10 @@ id;queue_number;patient_id;doctor_id;payment_type;reason_visit;description;sched
 17;AJU017;1;;98763273829;;;27-08-2025;;waiting
 18;AJU018;1;;CASH;blood_check;;27-09-2026;;waiting
 19;AJU019;1;;87352689;urine_test;;26-08-2024;;waiting
-20;AJU020;1;;35266732;consultation;Aku lagi galau banget pak;07-10-2027;;waiting
+20;AJU020;1;;35266732;consultation;Aku lagi galau banget pak;07-10-2027;;waiting21
+21;AJU021;1;;293827429;blood_check;;27-06-2025;;waiting
+22;AJU022;1;;037623772;blood_check;;27-06-2024;30000;waiting
+23;AJU023;1;;082362673;blood_check;;20-09-2025;30000;waiting
+24;AJU024;1;;91873652678378;blood_check;;29-02-2024;30000;waiting
+25;AJU025;1;;CASH;urine_test;;04-06-2027;80000;waiting
+26;AJU026;1;;382774627492;consultation;Iki error id, aku pusing error. perlu bantuan psikologi;28-06-2024;200000;waiting

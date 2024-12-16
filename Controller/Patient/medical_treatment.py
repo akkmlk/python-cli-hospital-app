@@ -22,9 +22,13 @@ def medical_treatment(patient_data):
                             submit_application(patient_data['id'], schedule_selected, reason_visit, description, "CASH")
                             return False
                         elif payment_type_choosed == "2":
-                            bpjs_number = input("Tuliskan nomor BPJS kamu : ")
-                            submit_application(patient_data['id'], schedule_selected, reason_visit, description, bpjs_number)
-                            return False
+                            while True:
+                                bpjs_number = input("Tuliskan nomor BPJS kamu : ")
+                                if bpjs_number == "":
+                                    print("No BPJS tidak boleh kosong")
+                                else:
+                                    submit_application(patient_data['id'], schedule_selected, reason_visit, description, bpjs_number)
+                                    return False
                         else:
                             print("Silahkan gunakan pembayaran yang tersedia!")
                 else:
