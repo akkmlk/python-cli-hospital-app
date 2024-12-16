@@ -79,7 +79,7 @@ def collect_update_input():
 def create_doctor(data):
     ensure_csv_exists()
     data['id'] = str(get_next_id())
-    data['role'] = 'Dokter'
+    data['role'] = 'doctor'
     if data['date_birth'] != '':
         data['date_birth'] = validate_date(data['date_birth'])
     with open(FILE_NAME, mode='a', newline='') as file:
@@ -89,7 +89,7 @@ def create_doctor(data):
 
 def read_doctor():
     data = read_all_data()
-    doctor_data = [row for row in data if row['role'] == 'Dokter']
+    doctor_data = [row for row in data if row['role'] == 'doctor']
     if len(doctor_data) == 0:
         print("Tidak ada data dokter.")
         return
