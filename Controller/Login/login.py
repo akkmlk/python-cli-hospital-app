@@ -34,9 +34,6 @@ def login (fileuser, filelog):
                         log_csv(filelog, username, password, "Berhasil")
                         temporary( row['id'], row['name'], row['username'], row['password'], row['phone_number'], row['address'], row['religion'], row['gender'], row['place_birth'], row['date_birth'], row['age_category'], row['married'], row['last_education'], row['blood_type'], row['bpjs'], row['role'], row['doctor_category'])
                         print("login dokter berhasil")
-                        import dashboard
-                        dashboard.menu()
-                        
                         os.system('pause') # menu_dokter()
                         return False
 
@@ -59,7 +56,10 @@ def login (fileuser, filelog):
                         detect_user = True
                         log_csv(filelog, username, password, "Berhasil")
                         print("login user berhasil")             
-                    
+                        import dashboard
+                        dashboard.menu()
+                        return False
+           
             if detect_user == False:
                 print("Log In Gagal")
                 log_csv(filelog, username, password, "Gagal")
