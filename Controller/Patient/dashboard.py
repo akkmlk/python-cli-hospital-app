@@ -1,9 +1,7 @@
 import os
 from medical_treatment import *
 
-import sys
 from queue_inform import queue_reader
-sys.path.insert(0, 'D://New folder//python-cli-hospital-app//Controller//Patient//queue_inform')
 
 def menu():
     print(f"Halo Pasien, Akmal Yunus")

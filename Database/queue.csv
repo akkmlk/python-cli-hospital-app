@@ -1,4 +1,4 @@
 id;queue_number;patient_id;doctor_id;payment_type;reason_visit;description;schedule_checked;room;price_total;status
-1;dummy;123;23;dummy;dummy;dummy;246;dummy;dummy;dummy
-2;dummy;456;56;dummy;dummy;dummy;135;dummy;dummy;dummy
+1;352;123;23;cash;medical checked;dummy;12-04-2024;A9;Rp 1.000.000;waiting
+2;278;456;56;bpjs;test urine;dummy;14-12-2024;B2;Rp 12.000.000;done
 

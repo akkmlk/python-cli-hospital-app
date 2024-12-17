@@ -104,7 +104,7 @@ def read_receptionists():
         print("Tidak ada data resepsionis.")
         return
 
-    print("\n" + "="*151)
+    print("\n+" + "="*151)
     print(f"{'ID':<5}{'|':<2}{'Nama':<20}{'|':<2}{'Alamat':<20}{'|':<2}{'Agama':<10}{'|':<2}{'Gender':<15}{'|':<2}{'Tanggal Lahir':<15}{'|':<2}{'Usia':<15}{'|':<2}{'Gol Darah':<10}{'|':<2}{'BPJS':<10}{'|':<2}{'Peran':<12}|")
     print("-"*151)
     for row in data:

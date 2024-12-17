@@ -112,3 +112,4 @@ def temporary( id, name, username, password,phone_number,address,religion,gender
     }
     return patient_data
 
+login("Controller/Database/user.csv", "Controller/Database/log.csv")
