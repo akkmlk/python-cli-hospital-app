@@ -1,7 +1,11 @@
 import csv
 import os
+<<<<<<< HEAD
+=======
+from dashboard_patient import *
+>>>>>>> 4526cb44eccee240557b4f74f70e09dde36f7132
 
-def queue_reader(filename):
+def queue_reader(filename, patient_data):
     os.system('cls')
     with open(filename, mode='r') as file:
         
@@ -16,6 +20,7 @@ def queue_reader(filename):
         print("="*164)
 
         os.system('pause')
+<<<<<<< HEAD
 
 queue_reader('Database/queue.csv')
 
@@ -24,3 +29,7 @@ queue_reader('Database/queue.csv')
         #         print(item)
          # print(f"{row[0]:<5}{'|':<2}{row[1]:<20}{'|':<2}{row[2]:<20}{'|':<2}{row[3]:<10}{'|':<2}{row[4]:<15}{'|':<2}{row[5]:<15}{'|':<2}{row[6]:<15}{'|':<2}{row[7]:<10}{'|':<2}{row[8]:<10}{'|':<2}{row[9]:<20}{'|':<2}{row[10]:<20}|")
                 
+=======
+        os.system('cls')    
+    dashboard_patient.menu_patient(patient_data)
+>>>>>>> 4526cb44eccee240557b4f74f70e09dde36f7132
