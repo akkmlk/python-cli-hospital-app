@@ -1,5 +1,6 @@
 import os
 from medical_treatment import *
+
 import sys
 from queue_inform import queue_reader
 sys.path.insert(0, 'D://New folder//python-cli-hospital-app//Controller//Patient//queue_inform')
@@ -8,11 +9,12 @@ def menu():
     print(f"Halo Pasien, Akmal Yunus")
     os.system('pause')
 
+
+    menu = ['Keluar', 'Berobat', 'Pemeriksaan Kesehatan', 'Kontrol', 'Informasi Antrian', 'Riwayat Pengajuan', 'Biodata']
+    for i, j in enumerate(menu):
+        print(f"{i}. {j}")
+
     while True:
-        menu = ['Keluar', 'Berobat', 'Pemeriksaan Kesehatan', 'Kontrol', 'Informasi Antrian', 'Riwayat Pengajuan', 'Biodata']
-        for i, j in enumerate(menu):
-            print(f"{i}. {j}")
-            
         choosed_menu = str(input("Pilih menu : "))
         if choosed_menu == "1":
             medical_treatment()
@@ -28,6 +30,7 @@ def menu():
             # import queue_inform
             queue_reader('Database/queue.csv')
             # return False
+            return False
         elif choosed_menu == "5":
             print("riwayat")
             return False

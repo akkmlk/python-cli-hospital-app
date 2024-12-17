@@ -53,8 +53,13 @@ def login (fileuser, filelog):
                         detect_user = True
                         log_csv(filelog, username, password, "Berhasil")
                         print("login user berhasil")             
+
                         menu()
 
+                        import dashboard
+                        dashboard.menu()
+                        return False
+           
             if detect_user == False:
                 print("Log In Gagal")
                 log_csv(filelog, username, password, "Gagal")
@@ -107,6 +112,3 @@ def temporary( id, name, username, password,phone_number,address,religion,gender
     }
     return patient_data
 
-
-
-login('Database/user.csv', 'Database/log.csv')

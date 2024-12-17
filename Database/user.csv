@@ -1,2 +1,5 @@
 id;name;username;password;phone_number;address;religion;gender;place_birth;date_birth;age_category;married;last_education;blood_type;bpjs;role;doctor_category
 1;aksjas;jamal;123;0189736276;asjasn;aksnaksm;M;9186372;09-23-2006;ajsba;y;smk;o;91863;user;spesialis jantung
+2;Budi;Budi37;passbudi;0897542321761;temanggug;islam;laki-laki;magelang;07-08-2001;dewasa;Y;SMA;AB;Y;Dokter;Kandungan
+3;Jamal;Jamal87;passjamal;08087158210;YOgyakarta;Katolik;Laki-laki;Yogyakarta;06-05-1987;Dewasa;Y;S# Kedokteran;O;Y;Dokter;Bedah
+4;Lutvi;Lutvi89;passlutvi;0821652677;magelang;Islam;Laki-laki;magelang;30-09-2000;Dewasa;Y;S3 Kedokteran;O;Y;Resepsionis;
