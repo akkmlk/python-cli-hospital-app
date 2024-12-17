@@ -5,3 +5,4 @@ id;queue_number;patient_id;doctor_id;payment_type;reason_visit;description;sched
 ;;4;;;yteam;;;;;done
 ;;5;;;;;;;;waiting
 ;;1;;;two hand;;;;;done
+

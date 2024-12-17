@@ -17,9 +17,17 @@ def patient_list(filename):
                 
                 # print(f"{row['id']:<10} {row['queue_number']:<20} {row['patient_id']:<20} {row['doctor_id']:<20} {row['payment_type']:<20} {row['reason_visit']:<15} {row['description']:<16} {row['schedule_checked']:<15} {row['schedule_checked']:<10} {row['price_total']:<15} {row['status']}")
                 print(f"{row['id']:<5}{'|':<2}{row['queue_number']:<20}{'|':<2}{row['patient_id']:<13}{'|':<2}{row['doctor_id']:<12}{'|':<2}{row['payment_type']:<20}{'|':<2}{row['reason_visit']:<20}{'|':<2}{row['description']:<15}{'|':<2}{row['schedule_checked']:<10}{'|':<2}{row['schedule_checked']:<10}{'|':<2}{row['price_total']:<13}{'|':<2}{row['status']:<13}|")
+            else:
+                ("data akun tidak tersedia")
+
     print("="*172)
 
+
+
+
 patient_list('Database/queue.csv')
+  
+# patient_list('Database/queue.csv')
 
 
 

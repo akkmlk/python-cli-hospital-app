@@ -1,8 +1,7 @@
 id;name;username;password;phone_number;address;religion;gender;place_birth;date_birth;age_category;married;last_education;blood_type;bpjs;role;doctor_category
-;a;gilang;a;123;a;a;a;a;11-11-1111;a;a;a;a;a;patient;a
-;dono botak;dono;123;1234;jakal;isla;pria;jamal;1-1-1111;dewasa;belum menikah;smk;A;12345;patient;bedah
-5;kasino hand;kasino;123;089692725217;jakal;islam ktp;pria;jamal;10-10-1010;anak-anak;belum menikah;sd;02N;450;patient;DALAM
-4;dudduuuung;dudung;123;1233;uty;mixing;lanang;123;1234;dewasa;menikah;smp;co2;12345;patient;dalam
-5;nama baru;baru;234;123;utyyyy;islam;pria;jalan;1233;remaja;belum menikah;smp;o2n;1234;patient;a
-6;1234;bahar;23456;123;aaa;aaaa;aaa;aaa;10-10-1010;aaa;aaa;aaa;aaa;aaa;patient;aaa
-7;Fadhil Gilang;fadhil;3450;089508427228;Johja;islam;pria;Brebes;19-09-2004;remaja;Belum menikah;SMK;B;0987928;patient;bedah
+;a;gilang;a;123;a;a;a;a;11-11-1111;a;a;a;a;a;patient;
+2;;a;a;a;;;;;a;;;;;;patient;
+3;;anyar;123;123;;;;;123;;;;;;patient;
+4;;cihuy;123;123;;;;;17-12-2024;;;;;;patient;
+5;;baru;a;a;;;;;a;;;;;;patient;
+6;;mewing;a;a;;;;;a;;;;;;patient;
