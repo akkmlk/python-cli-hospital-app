@@ -89,7 +89,7 @@ def read_receptionist():
     data = read_all_data()
     receptionist_data = [row for row in data if row['role'] == 'receptionis']
     if len(receptionist_data) == 0:
-        print("Tidak ada data resepsionis.")
+        print("Tidak ada data receptionis.")
         return
     print("\n" + "="*171)
     print(f"{'ID':<5}{'|':<2}{'Nama':<20}{'|':<2}{'Alamat':<20}{'|':<2}{'Agama':<10}{'|':<2}{'Gender':<15}{'|':<2}{'Tanggal Lahir':<15}{'|':<2}{'Usia':<15}{'|':<2}{'Gol Darah':<10}{'|':<2}{'BPJS':<10}{'|':<2}{'Peran':<10}|")
@@ -100,7 +100,7 @@ def read_receptionist():
 
 def update_receptionist():
     data = read_all_data()
-    receptionist_id = get_required_input("Masukkan ID resepsionis yang akan diperbarui: ")
+    receptionist_id = get_required_input("Masukkan ID receptionis yang akan diperbarui: ")
     found = False
     for row in data:
         if row['id'] == str(receptionist_id):
@@ -143,19 +143,19 @@ if __name__ == '__main__':
         print("4. Hapus data resepsionis")
         print("5. Keluar")
 
-        pilihan = input("Pilih menu: ")
+        option = input("Pilih menu: ")
 
-        if pilihan == '1':
+        if option == '1':
             data_receptionist = collect_receptionist_input()
             create_receptionist(data_receptionist)
-        elif pilihan == '2':
+        elif option == '2':
             read_receptionist()
-        elif pilihan == '3':
+        elif option == '3':
             update_receptionist
-        elif pilihan == '4':
-            doctor_id = input("Masukkan ID dokter yang akan dihapus: ")
-            delete_receptionist(doctor_id)
-        elif pilihan == '5':
+        elif option == '4':
+            receptionis_id = input("Masukkan ID receptionis yang akan dihapus: ")
+            delete_receptionist(receptionis_id)
+        elif option == '5':
             break
         else:
             print("Pilihan tidak valid, silakan coba lagi.")

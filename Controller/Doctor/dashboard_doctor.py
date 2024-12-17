@@ -21,4 +21,4 @@ def menu_doctor(doctor_data):
             print("keluar")
             return False
         else:
-            print("Oops! Menu tidak tersedia")
+            print("Maaf! Menu tidak tersedia")
