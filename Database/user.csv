@@ -1,5 +1,3 @@
-id;name;username;password;phone_number;address;religion;gender;place_birth;date_birth;age_category;married;last_education;blood_type;bpjs;role;doctor_category
-1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;doctor;1
 id;name;username;password;phone_number;address;religion;gender;place_birth;date_birth;age_category;married;last_education;blood_type;bpjs;role;category
 1;Budi;Budi37;passbudi;0897542321761;temanggug;islam;laki-laki;magelang;07-08-2001;dewasa;Y;SMA;AB;Y;Dokter;Kandungan
 2;Jamal;Jamal87;passjamal;08087158210;YOgyakarta;Katolik;Laki-laki;Yogyakarta;06-05-1987;Dewasa;Y;S# Kedokteran;O;Y;Dokter;Bedah
