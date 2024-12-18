@@ -2,9 +2,8 @@ import os
 import csv
 import sys
 sys.path.insert(1, 'C://Document//University//Classroom//Semester1//Alpro//Tugas-Besar//hospital-app//Controller//Increment')
-# from Increment.increment_queue import queue_number
-# from Increment.increment_queue import queue_id
 import increment
+import dashboard_patient
 
 def menu_medical_checkup(patient_data):
     menus = ['Cek Darah', 'Tes Urine', 'Konsultasi']
@@ -90,3 +89,6 @@ def submit_application(reason_visit, schedule_selected, description, payment, pr
         writer.writerow(new_queue_data)
 
     print("Pengajuan berhasil dikirim, verifikasi sedang dilakukan!")
+    os.system('pause')
+    os.system('cls')
+    dashboard_patient.menu_patient(patient_data)

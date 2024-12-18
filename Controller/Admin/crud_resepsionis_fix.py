@@ -152,7 +152,7 @@ def main_resepsionis():
         elif pilihan == '2':
             read_receptionist()
         elif pilihan == '3':
-            update_receptionist
+            update_receptionist()
         elif pilihan == '4':
             doctor_id = input("Masukkan ID dokter yang akan dihapus: ")
             delete_receptionist(doctor_id)

@@ -6,10 +6,10 @@ id;queue_number;patient_id;doctor_id;payment_type;reason_visit;description;sched
 5;AJU005;;;CASH;sakit pinggang;-;09-01-2021;;waiting
 6;AJU006;;;CASH;sd;d;dsd;;waiting
 7;AJU007;;;CASH;sas;a;aksja;;waiting
-8;AJU008;;2;02837625772;Mules;;09-01-2025;;verified
+8;AJU008;;4;02837625772;Mules;;09-01-2025;;verified
 9;AJU009;1;2;837672738;;;08-27-2024;;verified
 10;AJU010;1;;CASH;;;09-23-2024;;waiting
-11;AJU011;1;2;CASH;;mau sehat;08-20-2024;;verified
+11;AJU011;1;4;CASH;;mau sehat;08-20-2024;;verified
 12;AJU012;1;;CASH;;;09-09-2021;;waiting
 13;AJU013;;;876738483;Sakit Tenggorokan;;09-28-2024;;waiting
 14;AJU014;;;CASH;aakjs;asj;09-02-2024;;waiting
@@ -25,3 +25,10 @@ id;queue_number;patient_id;doctor_id;payment_type;reason_visit;description;sched
 24;AJU024;1;;91873652678378;blood_check;;29-02-2024;30000;waiting
 25;AJU025;1;;CASH;urine_test;;04-06-2027;80000;waiting
 26;AJU026;1;;382774627492;consultation;Iki error id, aku pusing error. perlu bantuan psikologi;28-06-2024;200000;waiting
+27;AJU027;;;CASH;Sakit Perut;;29-10-2024;;waiting
+28;AJU028;1;;CASH;Sakit Perut;;28-09-2021;;waiting
+29;AJU029;1;;28372892847672;Sakit Kepala;;09-10-2025;;waiting
+30;AJU030;1;;CASH;Sakit Perut;;18-07-2025;;waiting
+31;AJU031;1;;937862747;consultation;;19-02-2024;200000;waiting
+32;AJU032;1;;8726472942;Demam;;18-12-2024;;waiting
+33;AJU033;1;;CASH;consultation;Aku mau sembuh dari sakit hati;10-05-2025;200000;waiting

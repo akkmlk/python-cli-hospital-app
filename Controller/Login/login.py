@@ -13,17 +13,18 @@ otp = 'password'
 
 # temporary_log = []
 
-def login (fileuser, filelog):
+def login ():
     os.system('cls')
     print("Selamat Datang")
     trial = 0
+    filelog = 'Database/log.csv'
 
     while trial < 3:
         username = str(input("Masukan Username: "))
         password = str(input("Masukan Password: "))
         
         
-        with open(fileuser, mode='r') as file:
+        with open('Database/user.csv', mode='r') as file:
             reader = csv.DictReader(file, delimiter= ';')
 
             data = list(reader)
@@ -39,9 +40,9 @@ def login (fileuser, filelog):
                         print("login dokter berhasil")
                         dashboard_doctor.menu_doctor(patient_data)
                         os.system('pause')
-                        return False
+                        # return False
 
-                    elif row['role'] == 'resepsionis':
+                    elif row['role'] == 'receptionis':
                         detect_user = True
                         temporary_login( row['id'], row['name'], row['username'], row['password'], row['phone_number'], row['address'], row['religion'], row['gender'], row['place_birth'], row['date_birth'], row['age_category'], row['married'], row['last_education'], row['blood_type'], row['bpjs'], row['role'], row['doctor_category'])
                         log_csv(filelog, username, password, "Berhasil") 
@@ -122,4 +123,4 @@ def temporary_login(id, name, username, password,phone_number,address,religion,g
     }
     return patient_data
 
-login('Database/user.csv', 'Database/log.csv')
+login()

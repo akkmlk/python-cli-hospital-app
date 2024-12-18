@@ -3,6 +3,8 @@ from medical_treatment import *
 from medical_checkup import *
 from control import *
 from queue_inform import queue_reader
+import sys
+sys.path.insert(0, 'C://Document//University//Classroom//Semester1//Alpro//Tugas-Besar//hospital-app//Controller//Login')
 
 def menu_patient(patient_data):
     print(f"Halo Pasien, {patient_data['name']}")
@@ -33,7 +35,8 @@ def menu_patient(patient_data):
             print("biodata")
             return False
         elif choosed_menu == "0":
-            print("keluar")
+            import login
+            login.login()
             return False
         else:
             print("Oops! Menu tidak tersedia")

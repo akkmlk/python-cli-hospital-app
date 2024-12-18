@@ -1,6 +1,8 @@
 import os
+import sys
 from crud_dokter_fix import *
 from crud_resepsionis_fix import *
+sys.path.insert(0, 'C://Document//University//Classroom//Semester1//Alpro//Tugas-Besar//hospital-app//Controller//Login')
 
 def menu_admin(admin_data):
     print(f"Halo Admin, {admin_data['name']}")
@@ -19,7 +21,8 @@ def menu_admin(admin_data):
             main_resepsionis()
             return False
         elif choosed_menu == "0":
-            print("keluar")
+            import login
+            login.login()
             return False
         else:
             print("Oops! Menu tidak tersedia")

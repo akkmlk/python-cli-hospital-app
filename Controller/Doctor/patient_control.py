@@ -1,11 +1,10 @@
 import csv
 import sys
+import os
 sys.path.insert(0, 'C://Document//University//Classroom//Semester1//Alpro//Tugas-Besar//hospital-app//Controller//Increment')
 import increment
 import dashboard_doctor
-# menus = ['Set Jadwal Kontrol', 'Ubah Jadwal']
-# for i, j in enumerate(menus):
-#     print(f"{i}. {j}")
+from manage_recipes import input_medicine_recipe
 
 def patient_control_schedule(doctor_data):
     with open('Database/control.csv', mode='r') as file:
@@ -13,12 +12,16 @@ def patient_control_schedule(doctor_data):
         control_list = list(reader)
 
         control_found = False
+        print("\n" + "="*171)
+        print(f"{'Nomor Kontrol':<20}{'|':<2}{'ID Pasien':<20}{'|':<2}{'ID Dokter':<20}{'|':<2}{'Jadwal Kontrol':<20}{'Ruangan':<20}")
+        print("-"*171)
         for row in control_list:
             if row['doctor_id'] == doctor_data['id']:
-                print(row)
+                print(f"{row['control_number']:<20}{'|':<2}{row['patient_id']:<20}{'|':<2}{row['doctor_id']:<20}{'|':<2}{row['control_schedule']:<20}{row['room']:<20}")
                 control_found = True
             else:
                 control_found = False
+        print("="*171)
 
         if control_found == False:
             print("Tidak memiliki jadwal kontrol pasien!")
@@ -26,32 +29,41 @@ def patient_control_schedule(doctor_data):
         choosed_choice = input("Kembali ke dashboard? (Y/N) : ").lower()
         while True:
             if choosed_choice == "y":
+                os.system('cls')
                 dashboard_doctor.menu_doctor(doctor_data)
                 return False
             else:
                 patient_control_schedule(doctor_data)
                 return False
 
-def select_queue_number(doctor_data):
+def select_queue_number(doctor_data, option):
     with open('Database/queue.csv', mode='r') as file:
         reader = csv.DictReader(file, delimiter=';')
         queue_list = list(reader)
 
-    print("\n")
     while True:
         input_queue_number = input("Masukkan nomor antrian : ").lower()
         
+        print("\n" + "="*171)
+        print(f"{'Nomor Antrian':<20}{'|':<2}{'ID Pasien':<20}{'|':<2}{'ID Dokter':<20}{'|':<2}{'Tipe Pembayaran':<20}{'Alasan Kunjungan':<20}{'Jadwal Pemeriksaan':<20}{'Total Harga':<20}{'Status':<20}")
+        print("-"*171)
         queue_found = False
         for queue in queue_list:
             if queue['queue_number'].lower() == input_queue_number and queue['status'] == "verified":
                 queue_found = True
-                print(queue)
-                add_control_schedule(queue, doctor_data)
+                print(f"{queue['queue_number']:<20}{'|':<2}{queue['patient_id']:<20}{'|':<2}{queue['doctor_id']:<20}{'|':<2}{queue['payment_type']:<20}{queue['reason_visit']:<20}{queue['schedule_checked']:<20}{queue['price_total']:<20}{queue['status']:<20}")
+                print("="*171)
+
+                if option == "control":
+                    add_control_schedule(queue, doctor_data)
+                else:
+                    input_medicine_recipe(queue, doctor_data)
                 return False
             else:
                 queue_found = False
 
         if queue_found == False:
+            print("="*171)
             print("Nomor antrian tidak ditemukan!")
 
 def add_control_schedule(queue_data, doctor_data):
@@ -86,6 +98,7 @@ def add_control_schedule(queue_data, doctor_data):
                             add_control_schedule(queue_data, doctor_data)
                             return False
                         else:
+                            os.system('cls')
                             dashboard_doctor.menu_doctor(doctor_data)
                             return False
                 else:

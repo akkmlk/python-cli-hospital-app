@@ -91,9 +91,6 @@ def read_doctor():
     data = read_all_data()
     
     doctor_data = [row for row in data if row['role'] == 'doctor']
-    
-    if not doctor_data:
-    doctor_data = [row for row in data if row['role'] == 'Dokter']
     if len(doctor_data) == 0:
         print("Tidak ada data dokter.")
         return
