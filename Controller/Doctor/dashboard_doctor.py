@@ -27,4 +27,4 @@ def menu_doctor(doctor_data):
             login.login()
             return False
         else:
-            print("Oops! Menu tidak tersedia")
+            print("Maaf! Menu tidak tersedia")
