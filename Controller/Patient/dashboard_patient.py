@@ -1,27 +1,30 @@
 import os
 from medical_treatment import *
+from medical_checkup import *
+from control import *
+from queue_inform import queue_reader
 
-def menu():
-    print(f"Halo Pasien, Akmal Yunus")
+def menu_patient(patient_data):
+    print(f"Halo Pasien, {patient_data['name']}")
     os.system('pause')
 
-    menu = ['Keluar', 'Berobat', 'Pemeriksaan Kesehatan', 'Kontrol', 'Informasi Antrian', 'Riwayat Pengajuan', 'Biodata']
+    menu = ['Keluar', 'Berobat', 'Pemeriksaan Kesehatan (Medical Checkup)', 'Kontrol', 'Informasi Antrian', 'Riwayat Pengajuan', 'Biodata']
     for i, j in enumerate(menu):
         print(f"{i}. {j}")
 
     while True:
-        choosed_menu = str(input("Pilih menu : "))
+        choosed_menu = input("Pilih menu : ")
         if choosed_menu == "1":
-            medical_treatment()
+            medical_treatment(patient_data)
             return False
         elif choosed_menu == "2":
-            print("checkup")
+            menu_medical_checkup(patient_data)
             return False
         elif choosed_menu == "3":
-            print("kontrol")
+            show_control(patient_data)
             return False
         elif choosed_menu == "4":
-            print("antrian")
+            queue_reader('Database/queue.csv', patient_data)
             return False
         elif choosed_menu == "5":
             print("riwayat")
@@ -35,5 +38,3 @@ def menu():
         else:
             print("Oops! Menu tidak tersedia")
             os.system('pause')
-
-menu()

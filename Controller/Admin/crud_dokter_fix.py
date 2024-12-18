@@ -4,7 +4,7 @@ from datetime import datetime
 
 FILE_NAME = 'Database/user.csv'
 HEADER = [
-    'id;name;username;password;phone_number;address;religion;gender;place_birth;date_birth;age_category;married;last_education;blood_type;bpjs;role;category'
+    'id;name;username;password;phone_number;address;religion;gender;place_birth;date_birth;last_education;blood_type;bpjs;role;doctor_category'
 ]
 
 def ensure_csv_exists():
@@ -13,37 +13,43 @@ def ensure_csv_exists():
             writer = csv.writer(file, delimiter=';')
             writer.writerow(HEADER[0].split(';'))
 
-
 def read_all_data():
     ensure_csv_exists()
     with open(FILE_NAME, mode='r') as file:
         reader = csv.DictReader(file, delimiter=';')
         return list(reader)
 
-
 def get_next_id():
     data = read_all_data()
     valid_ids = [int(row['id']) for row in data if row['id'].isdigit()]
     return max(valid_ids, default=0) + 1
 
-
-def get_required_input(prompt):
+def get_required_input(prompt, choices=None):
     while True:
         value = input(prompt)
-        if value.strip():
+        if value == '':
+            print("Input tidak boleh kosong. Silakan coba lagi.")
+        elif choices and value not in choices:
+            print(f"Pilihan tidak valid. Pilih salah satu dari: {', '.join(choices)}.")
+        else:
             return value
-        print("Input tidak boleh kosong. Silakan coba lagi.")
-
 
 def validate_date(date_str):
     while True:
-        try:
-            date_obj = datetime.strptime(date_str, "%d-%m-%Y")
-            return date_obj.strftime("%d-%m-%Y")  
-        except ValueError:
-            print("Format tanggal salah. Harus dalam format dd-mm-yyyy.")
-            date_str = input("Masukkan tanggal lahir (dd-mm-yyyy): ")
-
+        date_parts = date_str.split('-')
+        if len(date_parts) == 3 and all(part.isdigit() for part in date_parts):
+            day, month, year = map(int, date_parts)
+            if 1 <= day <= 31 and 1 <= month <= 12 and year > 0:
+                if month in [1, 3, 5, 7, 8, 10, 12] and day <= 31:
+                    return f"{day:02d}-{month:02d}-{year}"
+                elif month in [4, 6, 9, 11] and day <= 30:
+                    return f"{day:02d}-{month:02d}-{year}"
+                elif month == 2:
+                    is_leap_year = (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0)
+                    if (is_leap_year and day <= 29) or (not is_leap_year and day <= 28):
+                        return f"{day:02d}-{month:02d}-{year}"
+        print("Format tanggal tidak valid. Harap masukkan tanggal dalam format dd-mm-yyyy.")
+        date_str = input("Masukkan tanggal lahir (dd-mm-yyyy): ")
 
 def collect_doctor_input():
     data = {}
@@ -53,17 +59,14 @@ def collect_doctor_input():
     data['phone_number'] = get_required_input("Masukkan nomor telepon: ")
     data['address'] = get_required_input("Masukkan alamat: ")
     data['religion'] = get_required_input("Masukkan agama: ")
-    data['gender'] = get_required_input("Masukkan jenis kelamin: ")
+    data['gender'] = get_required_input("Masukkan jenis kelamin (L/P): ", choices=['L', 'P'])
     data['place_birth'] = get_required_input("Masukkan tempat lahir: ")
     data['date_birth'] = validate_date(get_required_input("Masukkan tanggal lahir (dd-mm-yyyy): "))
-    data['age_category'] = get_required_input("Masukkan kategori usia: ")
-    data['married'] = get_required_input("Masukkan status pernikahan: ")
     data['last_education'] = get_required_input("Masukkan pendidikan terakhir: ")
-    data['blood_type'] = get_required_input("Masukkan golongan darah: ")
+    data['blood_type'] = get_required_input("Masukkan golongan darah (A/B/AB/O): ", choices=['A', 'B', 'AB', 'O'])
     data['bpjs'] = get_required_input("Masukkan nomor BPJS: ")
-    data['category'] = input("Masukkan kategori dokter: ")
+    data['doctor_category'] = input("Masukkan kategori dokter: ")
     return data
-
 
 def collect_update_input():
     updated_data = {}
@@ -73,59 +76,59 @@ def collect_update_input():
     updated_data['phone_number'] = input("Masukkan nomor telepon baru (kosongkan jika tidak ingin mengubah): ")
     updated_data['address'] = input("Masukkan alamat baru (kosongkan jika tidak ingin mengubah): ")
     updated_data['religion'] = input("Masukkan agama baru (kosongkan jika tidak ingin mengubah): ")
-    updated_data['gender'] = input("Masukkan jenis kelamin baru (kosongkan jika tidak ingin mengubah): ")
+    updated_data['gender'] = input("Masukkan jenis kelamin baru (Laki-laki/Perempuan, kosongkan jika tidak ingin mengubah): ")
+    if updated_data['gender'] and updated_data['gender'] not in ['L', 'P']:
+        print("Pilihan gender tidak valid. Perubahan diabaikan.")
+        updated_data.pop('gender')
     updated_data['place_birth'] = input("Masukkan tempat lahir baru (kosongkan jika tidak ingin mengubah): ")
     updated_data['date_birth'] = input("Masukkan tanggal lahir baru (dd-mm-yyyy, kosongkan jika tidak ingin mengubah): ")
-    if updated_data['date_birth']:
+    if updated_data['date_birth'] != '':
         updated_data['date_birth'] = validate_date(updated_data['date_birth'])
-    updated_data['age_category'] = input("Masukkan kategori usia baru (kosongkan jika tidak ingin mengubah): ")
-    updated_data['married'] = input("Masukkan status pernikahan baru (kosongkan jika tidak ingin mengubah): ")
     updated_data['last_education'] = input("Masukkan pendidikan terakhir baru (kosongkan jika tidak ingin mengubah): ")
-    updated_data['blood_type'] = input("Masukkan golongan darah baru (kosongkan jika tidak ingin mengubah): ")
+    updated_data['blood_type'] = input("Masukkan golongan darah baru (A/B/AB/O, kosongkan jika tidak ingin mengubah): ")
+    if updated_data['blood_type'] and updated_data['blood_type'] not in ['A', 'B', 'AB', 'O']:
+        print("Pilihan golongan darah tidak valid. Perubahan diabaikan.")
+        updated_data.pop('blood_type')
     updated_data['bpjs'] = input("Masukkan nomor BPJS baru (kosongkan jika tidak ingin mengubah): ")
     updated_data['role'] = input("Masukkan peran baru (kosongkan jika tidak ingin mengubah): ")
-    updated_data['category'] = input("Masukkan kategori dokter baru (kosongkan jika tidak ingin mengubah): ")
-    return {k: v for k, v in updated_data.items() if v.strip()}
-
+    updated_data['doctor_category'] = input("Masukkan kategori dokter baru (kosongkan jika tidak ingin mengubah): ")
+    return {k: v for k, v in updated_data.items() if v != ''}
 
 def create_doctor(data):
     ensure_csv_exists()
     data['id'] = str(get_next_id())
-    data['role'] = 'Dokter'  
-    if data['date_birth']:
+    data['role'] = 'doctor'
+    if data['date_birth'] != '':
         data['date_birth'] = validate_date(data['date_birth'])
     with open(FILE_NAME, mode='a', newline='') as file:
         writer = csv.DictWriter(file, fieldnames=HEADER[0].split(';'), delimiter=';')
         writer.writerow(data)
     print("Data berhasil ditambahkan.")
 
-
 def read_doctor():
     data = read_all_data()
-    
-    doctor_data = [row for row in data if row['role'] == 'Dokter']
-    
-    if not doctor_data:
+    doctor_data = [row for row in data if row['role'] == 'doctor']
+    if len(doctor_data) == 0:
         print("Tidak ada data dokter.")
         return
-
-
-    print("\n" + "="*171)
-    print(f"{'ID':<5}{'|':<2}{'Nama':<20}{'|':<2}{'Alamat':<20}{'|':<2}{'Agama':<10}{'|':<2}{'Gender':<15}{'|':<2}{'Tanggal Lahir':<15}{'|':<2}{'Usia':<15}{'|':<2}{'Gol Darah':<10}{'|':<2}{'BPJS':<10}{'|':<2}{'Peran':<10}{'|':<2}{'Kategori':<20}|")
-    print("-"*171)
+    print("\n" + "="*150)
+    print(f"{'ID':<5}{'|':<2}{'Nama':<20}{'|':<2}{'Alamat':<20}{'|':<2}{'Agama':<10}{'|':<2}{'Gender':<15}{'|':<2}{'Tanggal Lahir':<15}{'|':<2}{'Gol Darah':<10}{'|':<2}{'BPJS':<10}{'|':<2}{'Peran':<10}{'|':<2}{'Kategori':<20}|")
+    print("-"*150)
     for row in doctor_data:
-        print(f"{row['id']:<5}{'|':<2}{row['name']:<20}{'|':<2}{row['address']:<20}{'|':<2}{row['religion']:<10}{'|':<2}{row['gender']:<15}{'|':<2}{row['date_birth']:<15}{'|':<2}{row['age_category']:<15}{'|':<2}{row['blood_type']:<10}{'|':<2}{row['bpjs']:<10}{'|':<2}{row['role']:<10}{'|':<2}{row['category']:<20}|")
-    print("="*171)
+        print(f"{row['id']:<5}{'|':<2}{row['name']:<20}{'|':<2}{row['address']:<20}{'|':<2}{row['religion']:<10}{'|':<2}{row['gender']:<15}{'|':<2}{row['date_birth']:<15}{'|':<2}{row['blood_type']:<10}{'|':<2}{row['bpjs']:<10}{'|':<2}{row['role']:<10}{'|':<2}{row['doctor_category']:<20}|")
+    print("="*150)
 
-
-def update_doctor(doctor_id, updated_data):
+def update_doctor():
     data = read_all_data()
+    doctor_id = get_required_input("Masukkan ID dokter yang akan diperbarui: ")
     found = False
     for row in data:
         if row['id'] == str(doctor_id):
             found = True
+            print(f"Data ditemukan untuk ID {doctor_id}. Lanjutkan dengan memperbarui.")
+            updated_data = collect_update_input()
             for key, value in updated_data.items():
-                if key == 'date_birth' and value:
+                if key == 'date_birth' and value != '':
                     value = validate_date(value)
                 row[key] = value
             break
@@ -137,7 +140,6 @@ def update_doctor(doctor_id, updated_data):
         writer.writeheader()
         writer.writerows(data)
     print("Data berhasil diperbarui.")
-
 
 def delete_doctor(doctor_id):
     data = read_all_data()
@@ -151,7 +153,6 @@ def delete_doctor(doctor_id):
         writer.writerows(new_data)
     print("Data berhasil dihapus.")
 
-
 if __name__ == '__main__':
     ensure_csv_exists()
     while True:
@@ -162,21 +163,19 @@ if __name__ == '__main__':
         print("4. Hapus data dokter")
         print("5. Keluar")
 
-        option = input("Pilih menu: ")
+        pilihan = input("Pilih menu: ")
 
-        if option == '1':
+        if pilihan == '1':
             data_doctor = collect_doctor_input()
             create_doctor(data_doctor)
-        elif option == '2':
+        elif pilihan == '2':
             read_doctor()
-        elif option == '3':
-            doctor_id = input("Masukkan ID dokter yang akan diperbarui: ")
-            updated_data = collect_update_input()
-            update_doctor(doctor_id, updated_data)
-        elif option == '4':
+        elif pilihan == '3':
+            update_doctor()
+        elif pilihan == '4':
             doctor_id = input("Masukkan ID dokter yang akan dihapus: ")
             delete_doctor(doctor_id)
-        elif option == '5':
+        elif pilihan == '5':
             break
         else:
             print("Pilihan tidak valid, silakan coba lagi.")

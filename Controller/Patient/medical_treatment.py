@@ -1,36 +1,32 @@
 import csv
-import datetime
+import sys
+sys.path.insert(0, 'C://Document//University//Classroom//Semester1//Alpro//Tugas-Besar//hospital-app//Controller//Increment')
+import increment
 
-def medical_treatment():
-    patient_id = 1
-
+def medical_treatment(patient_data):
     while True:
         schedule_selected = input("Tanggal berapa kamu ingin berobat (format dd-MM-yyyy) : ")
         if schedule_selected != "":
             while True:
                 reason_visit = input("Apa keluhan kamu : ")
                 if reason_visit != "":
+                    description = input("Deskripsikan keluhan kamu (Jika tidak ingin boleh di kosongkan) : ")
+                    payment_types = ['CASH', 'BPJS']
+                    for i, j in enumerate(payment_types):
+                        print(f"{i + 1}. {j}")
+
                     while True:
-                        description = input("Deskripsikan keluhan kamu (Jika tidak ingin mendeskripsikan gunakan '-') : ")
-                        if description != "":
-                            payment_types = ['CASH', 'BPJS']
-                            for i, j in enumerate(payment_types):
-                                print(f"{i + 1}. {j}")
+                        payment_type_choosed = str(input("Mau bayar pake apa : "))
 
-                            while True:
-                                payment_type_choosed = str(input("Mau bayar pake apa : "))
-
-                                if payment_type_choosed == "1":
-                                    submit_application(patient_id, schedule_selected, reason_visit, description, "CASH")
-                                    return False
-                                elif payment_type_choosed == "2":
-                                    bpjs_number = input("Tuliskan nomor BPJS kamu : ")
-                                    submit_application(patient_id, schedule_selected, reason_visit, description, bpjs_number)
-                                    return False
-                                else:
-                                    print("Silahkan gunakan pembayaran yang tersedia!")
+                        if payment_type_choosed == "1":
+                            submit_application(patient_data['id'], schedule_selected, reason_visit, description, "CASH")
+                            return False
+                        elif payment_type_choosed == "2":
+                            bpjs_number = input("Tuliskan nomor BPJS kamu : ")
+                            submit_application(patient_data['id'], schedule_selected, reason_visit, description, bpjs_number)
+                            return False
                         else:
-                            print("Silahkan gunakan '-'")
+                            print("Silahkan gunakan pembayaran yang tersedia!")
                 else:
                     print("Tuliskan keluhan mu disini!")
         else:
@@ -39,25 +35,14 @@ def medical_treatment():
 def submit_application(patient, schedule_selected, reason_visit, description, payment):
     with open('Database/queue.csv', mode='r') as file:
         reader = csv.DictReader(file, delimiter=';')
+        headers = reader.fieldnames
 
         queue_list = list(reader)
 
-        if len(queue_list) == 0:
-            queue_id = 1
-            queue_number = "AJU" + "001"
-        else:
-            # for i in queue_list[-1]:
-            recent_queue_id = queue_list[-1]['id']
-            recent_queue_number = queue_list[-1]['queue_number']
-            increment_number = int(recent_queue_number[-3:]) + 1
-            queue_number = "AJU" + f"{increment_number:03}"
-            queue_id = int(recent_queue_id) + 1
-
-
     with open('Database/queue.csv', mode='a', newline='') as write:
         new_queue_data = {
-            'id' : queue_id,
-            'queue_number' : queue_number,
+            'id' : increment.id(queue_list),
+            'queue_number' : increment.queue_number(queue_list),
             'payment_type' : payment,
             'reason_visit' : reason_visit,
             'description' : description,
@@ -65,7 +50,7 @@ def submit_application(patient, schedule_selected, reason_visit, description, pa
             'status' : 'waiting',
         }
 
-        writer = csv.DictWriter(write, fieldnames=reader.fieldnames, delimiter=';')
+        writer = csv.DictWriter(write, fieldnames=headers, delimiter=';')
         writer.writerow(new_queue_data)
 
     print("Pengajuan berhasil dikirim, verifikasi sedang dilakukan!")
