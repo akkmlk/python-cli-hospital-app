@@ -1,7 +1,2 @@
-id;name;username;password;phone_number;address;religion;gender;place_birth;date_birth;age_category;married;last_education;blood_type;bpjs;role;doctor_category
-;a;gilang;a;123;a;a;a;a;11-11-1111;a;a;a;a;a;patient;
-2;;a;a;a;;;;;a;;;;;;patient;
-3;;anyar;123;123;;;;;123;;;;;;patient;
-4;;cihuy;123;123;;;;;17-12-2024;;;;;;patient;
-5;;baru;a;a;;;;;a;;;;;;patient;
-6;;mewing;a;a;;;;;a;;;;;;patient;
+id;name;username;password;phone_number;address;religion;gender;place_birth;date_birth;married;last_education;blood_type;bpjs;role;doctor_category
+
