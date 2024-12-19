@@ -112,10 +112,10 @@ def read_doctor():
         print("Tidak ada data dokter.")
         return
     print("\n" + "="*150)
-    print(f"{'ID':<5}{'|':<2}{'Nama':<20}{'|':<2}{'Alamat':<20}{'|':<2}{'Agama':<10}{'|':<2}{'Gender':<15}{'|':<2}{'Tanggal Lahir':<15}{'|':<2}{'Gol Darah':<10}{'|':<2}{'BPJS':<10}{'|':<2}{'Peran':<10}{'|':<2}{'Kategori':<20}|")
+    print(f"{'ID':<5}{'|':<2}{'Nama':<20}{'|':<2}{'Alamat':<20}{'|':<2}{'Agama':<10}{'|':<2}{'Gender':<15}{'|':<2}{'Tanggal Lahir':<15}{'|':<2}{'Gol Darah':<10}{'|':<2}{'BPJS':<10}{'|':<2}{'Peran':<10}{'|':<2}{'Kategori':<16}|")
     print("-"*150)
     for row in doctor_data:
-        print(f"{row['id']:<5}{'|':<2}{row['name']:<20}{'|':<2}{row['address']:<20}{'|':<2}{row['religion']:<10}{'|':<2}{row['gender']:<15}{'|':<2}{row['date_birth']:<15}{'|':<2}{row['blood_type']:<10}{'|':<2}{row['bpjs']:<10}{'|':<2}{row['role']:<10}{'|':<2}{row['doctor_category']:<20}|")
+        print(f"{row['id']:<5}{'|':<2}{row['name']:<20}{'|':<2}{row['address']:<20}{'|':<2}{row['religion']:<10}{'|':<2}{row['gender']:<15}{'|':<2}{row['date_birth']:<15}{'|':<2}{row['blood_type']:<10}{'|':<2}{row['bpjs']:<10}{'|':<2}{row['role']:<10}{'|':<2}{row['doctor_category']:<16}|")
     print("="*150)
 
 def update_doctor():
@@ -124,6 +124,9 @@ def update_doctor():
     found = False
     for row in data:
         if row['id'] == str(doctor_id):
+            if row['role'] != 'doctor':
+                print(f"ID {doctor_id} bukan data dokter.")
+                return
             found = True
             print(f"Data ditemukan untuk ID {doctor_id}. Lanjutkan dengan memperbarui.")
             updated_data = collect_update_input()
@@ -140,6 +143,7 @@ def update_doctor():
         writer.writeheader()
         writer.writerows(data)
     print("Data berhasil diperbarui.")
+
 
 def delete_doctor(doctor_id):
     data = read_all_data()
