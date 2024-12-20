@@ -19,4 +19,3 @@ id;queue_number;patient_id;doctor_id;payment_type;reason_visit;description;sched
 18;AJU018;1;3;CASH;blood_check;;27-09-2026;10000;verified
 19;AJU019;1;1;87352689;urine_test;;26-08-2024;Jamal;verified
 20;AJU020;1;1;35266732;consultation;Aku lagi galau banget pak;07-10-2027;5000;verified
-20;AJU020;1;1;35266732;consultation;Aku lagi galau banget pak;07-10-2027;50000;verified
