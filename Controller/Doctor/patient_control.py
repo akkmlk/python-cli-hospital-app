@@ -2,6 +2,8 @@ import csv
 import sys
 import os
 sys.path.insert(0, 'C://Document//University//Classroom//Semester1//Alpro//Tugas-Besar//hospital-app//Controller//Increment')
+sys.path.insert(0, 'C://Document//University//Classroom//Semester1//Alpro//Tugas-Besar//hospital-app//Controller//Admin')
+import crud_dokter_fix
 import increment
 import dashboard_doctor
 from manage_recipes import input_medicine_recipe
@@ -12,29 +14,23 @@ def patient_control_schedule(doctor_data):
         control_list = list(reader)
 
         control_found = False
-        print("\n" + "="*171)
-        print(f"{'Nomor Kontrol':<20}{'|':<2}{'ID Pasien':<20}{'|':<2}{'ID Dokter':<20}{'|':<2}{'Jadwal Kontrol':<20}{'Ruangan':<20}")
-        print("-"*171)
+        print("\n" + "="*109)
+        print(f"{'Nomor Kontrol':<20}{'|':<2}{'ID Pasien':<20}{'|':<2}{'ID Dokter':<20}{'|':<2}{'Jadwal Kontrol':<20}{'|':<2}{'Ruangan':<20}|")
+        print("-"*109)
         for row in control_list:
             if row['doctor_id'] == doctor_data['id']:
-                print(f"{row['control_number']:<20}{'|':<2}{row['patient_id']:<20}{'|':<2}{row['doctor_id']:<20}{'|':<2}{row['control_schedule']:<20}{row['room']:<20}")
+                print(f"{row['control_number']:<20}{'|':<2}{row['patient_id']:<20}{'|':<2}{row['doctor_id']:<20}{'|':<2}{row['control_schedule']:<20}{'|':<2}{row['room']:<20}|")
                 control_found = True
             else:
                 control_found = False
-        print("="*171)
+        print("="*109)
 
         if control_found == False:
             print("Tidak memiliki jadwal kontrol pasien!")
-
-        choosed_choice = input("Kembali ke dashboard? (Y/N) : ").lower()
-        while True:
-            if choosed_choice == "y":
-                os.system('cls')
-                dashboard_doctor.menu_doctor(doctor_data)
-                return False
-            else:
-                patient_control_schedule(doctor_data)
-                return False
+        
+    os.system('pause')
+    os.system('cls')
+    dashboard_doctor.menu_doctor(doctor_data)
 
 def select_queue_number(doctor_data, option):
     with open('Database/queue.csv', mode='r') as file:
@@ -68,7 +64,7 @@ def select_queue_number(doctor_data, option):
 
 def add_control_schedule(queue_data, doctor_data):
     while True:
-        schedule_selected = input("Masukkan tanggal (format dd-MM-yyyy) : ")
+        schedule_selected = crud_dokter_fix.validate_date(input("Masukkan tanggal (format dd-MM-yyyy) : "))
         if schedule_selected != "":
             while True:
                 room_selected = input("Masukkan ruangan : ")

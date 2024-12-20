@@ -4,12 +4,12 @@ import sys
 sys.path.insert(0, 'C://Document//University//Classroom//Semester1//Alpro//Tugas-Besar//hospital-app//Controller//Increment')
 sys.path.insert(0, 'C://Document//University//Classroom//Semester1//Alpro//Tugas-Besar//hospital-app//Controller//Admin')
 import increment
-import crud_resepsionis_fix
+import crud_dokter_fix
 import dashboard_patient
 
 def medical_treatment(patient_data):
     while True:
-        schedule_selected = input("Tanggal berapa kamu ingin berobat (format dd-MM-yyyy) : ")
+        schedule_selected = crud_dokter_fix.validate_date(input("Tanggal berapa kamu ingin berobat (format dd-MM-yyyy) : "))
         if schedule_selected != "":
             while True:
                 reason_visit = input("Apa keluhan kamu : ")

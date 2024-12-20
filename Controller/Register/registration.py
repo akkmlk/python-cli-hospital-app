@@ -1,6 +1,10 @@
 import csv
 import datetime as dt
 import os
+import sys
+sys.path.insert(0, 'C://Document//University//Classroom//Semester1//Alpro//Tugas-Besar//hospital-app//Controller//Login')
+sys.path.insert(0, 'C://Document//University//Classroom//Semester1//Alpro//Tugas-Besar//hospital-app//Controller//Admin')
+import crud_dokter_fix
 
 def get_required_input(prompt):
     while True:
@@ -15,7 +19,7 @@ def regist(filename):
     username = get_required_input("Masukkan username: ")
     password = get_required_input("Masukkan password: ")
     phone = get_required_input("Masukkan Nomor HP: ")
-    birth = get_required_input("Masukkan Tanggal Lahir (DD-MM-YYYY): ")
+    birth = crud_dokter_fix.validate_date(get_required_input("Masukkan Tanggal Lahir (DD-MM-YYYY): "))
 
     users = []
 
@@ -51,10 +55,5 @@ def regist(filename):
     print("Registrasi berhasil!")
     print("Anda telah membuat akun baru")
     print("ID Anda: ", new_id)
-
-regist('Database/user.csv')
-
-
-      
-
-
+    import login
+    login.login()

@@ -2,7 +2,9 @@ import os
 import csv
 import sys
 sys.path.insert(1, 'C://Document//University//Classroom//Semester1//Alpro//Tugas-Besar//hospital-app//Controller//Increment')
+sys.path.insert(0, 'C://Document//University//Classroom//Semester1//Alpro//Tugas-Besar//hospital-app//Controller//Admin')
 import increment
+import crud_dokter_fix
 import dashboard_patient
 
 def menu_medical_checkup(patient_data):
@@ -38,7 +40,7 @@ def form(reason_visit, patient_data):
         price_total = 200000
 
     while True:
-        schedule_selected = str(input("Masukkan tanggal nya (format dd-MM-yyyy) : "))
+        schedule_selected = crud_dokter_fix.validate_date(input("Masukkan tanggal nya (format dd-MM-yyyy) : "))
         
         if schedule_selected != "":
             description = ""
