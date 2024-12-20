@@ -1,7 +1,7 @@
 id;name;username;password;phone_number;address;religion;gender;place_birth;date_birth;last_education;blood_type;bpjs;role;doctor_category
 1;akmal;kamal;kamal12;08197763;kronggahan;islam;M;Ciamis;25-07-2005;SMK;O;27382398;patient;
-3;akmal;samsu;samsu12;08197763;kronggahan;islam;M;Ciamis;09-07-1990;S3 Keresepsionisan;O;;resepsionis;
-4;Budi;budi20;passbudi;0876856363;semarang;islam;laki-laki;4;04-09-2005;S3 Kedokteran;O;Ya;doctor;Bedah
-5;Akmal;Akmal89;passakmal;08567317176;cianjur;katolik;laki-laki;0;09-08-2000;SMK;O;Y;Resepsionis;
-6;dw;cwd;ed;evf;vf;evf;Laki-laki;fg;09-08-1989;jhvu;B;jhvg;doctor;uhvgu
+2;akmal;samsu;samsu12;08197763;kronggahan;islam;M;Ciamis;09-07-1990;S3 Keresepsionisan;O;;resepsionis;
+3;Budi;budi20;passbudi;0876856363;semarang;islam;laki-laki;4;04-09-2005;S3 Kedokteran;O;Ya;doctor;Bedah
+4;Akmal;Akmal89;passakmal;08567317176;cianjur;katolik;laki-laki;0;09-08-2000;SMK;O;Y;Resepsionis;
+5;dw;cwd;ed;evf;vf;evf;Laki-laki;fg;09-08-1989;jhvu;B;jhvg;doctor;uhvgu
 
