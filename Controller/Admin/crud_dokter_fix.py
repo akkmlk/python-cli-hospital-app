@@ -36,20 +36,12 @@ def get_required_input(prompt, choices=None):
 
 def validate_date(date_str):
     while True:
-        date_parts = date_str.split('-')
-        if len(date_parts) == 3 and all(part.isdigit() for part in date_parts):
-            day, month, year = map(int, date_parts)
-            if 1 <= day <= 31 and 1 <= month <= 12 and year > 0:
-                if month in [1, 3, 5, 7, 8, 10, 12] and day <= 31:
-                    return f"{day:02d}-{month:02d}-{year}"
-                elif month in [4, 6, 9, 11] and day <= 30:
-                    return f"{day:02d}-{month:02d}-{year}"
-                elif month == 2:
-                    is_leap_year = (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0)
-                    if (is_leap_year and day <= 29) or (not is_leap_year and day <= 28):
-                        return f"{day:02d}-{month:02d}-{year}"
+        day, month, year = map(int, date_str.split('-')) if '-' in date_str else (0, 0, 0)
+        if 1 <= month <= 12 and 1 <= day <= (29 if month == 2 and ((year % 4 == 0 and year % 100 != 0) or year % 400 == 0) else 28 if month == 2 else 30 if month in [4, 6, 9, 11] else 31):
+            return f"{day:02d}-{month:02d}-{year}"
         print("Format tanggal tidak valid. Harap masukkan tanggal dalam format dd-mm-yyyy.")
         date_str = input("Masukkan tanggal lahir (dd-mm-yyyy): ")
+
 
 def collect_doctor_input():
     data = {}
