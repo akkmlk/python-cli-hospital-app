@@ -27,30 +27,30 @@ def payment_code(filename):
         reader = csv.DictReader(file,delimiter=';')
         header = reader.fieldnames 
         data = list(reader)
-        kode = input(str('masukan kode pembayaran : ')).lower()
         while True:
+            kode = input(str("masukan kode pembayaran : ")).lower()
             queue_found = False
             for row in data:
-                print("\n" + "="*171)
-                print(f"{'Nomor Antrian ':<20}{'|':<2}{'ID_Pasien':<20}{'|':<2}{'ID_Dokter':<10}{'|':<2}{'Tipe_Pembayaran':<15}{'|':<2}{'Alasan_berkunjung':<15}{'|':<2}{'Deskripsi':<15}{'|':<2}{'jadwal diperiksa':<10}{'|':<2}{'Ruangan':<10}{'|':<2}{'Harga_total':<10}{'|':<2}{'Status':<20}|")
-                print("-"*171)
-                if row['queue_number'].lower() == kode:
-                    print(f"{row['queue_number']:<20}{'|':<2}{row['patient_id']:<20}{'|':<2}{row['doctor_id']:<10}{'|':<2}{row['payment_type']:<15}{'|':<2}{row['reason_visit']:<16}{'|':<2}{row['description']:<17}{'|':<2}{row['schedule_checked']:<16}{'|':<2}{row['room']:<10}{'|':<2}{row['price_total']:<10}{'|':<2}{row['status']:<20}|")
-                    print("="*171)
-                    queue_found = True
-                    print("apakah pasien ingin membayar : ")
-                    pay = input("(y/n?) : ").lower()
-                    if pay == "y": 
-                        if row['payment_type'] == str('cash'):
+                if row['status'] == "verified":
+                    if row['queue_number'].lower() == kode:
+                        print("\n" + "="*189)
+                        print(f"{'Nomor Antrian ':<20}{'|':<2}{'ID_Pasien':<20}{'|':<2}{'ID_Dokter':<10}{'|':<2}{'Tipe_Pembayaran':<15}{'|':<2}{'Alasan_berkunjung':<20}{'|':<2}{'Deskripsi':<40}{'|':<2}{'jadwal diperiksa':<16}{'|':<2}{'Harga_total':<10}{'|':<2}{'Status':<20}|")
+                        print("-"*189)
+                        print(f"{row['queue_number']:<20}{'|':<2}{row['patient_id']:<20}{'|':<2}{row['doctor_id']:<10}{'|':<2}{row['payment_type']:<15}{'|':<2}{row['reason_visit']:<20}{'|':<2}{row['description']:<40}{'|':<2}{row['schedule_checked']:<16}{'|':<2}{row['price_total']:<11}{'|':<2}{row['status']:<20}|")
+                        print("="*189)
+                        queue_found = True
+                        print("apakah pasien ingin membayar : ")
+                        pay = input("(y/n?) : ").lower()
+                        if pay == "y": 
+                            if row['payment_type'] == 'CASH':
                                 jumlah_uang = int(input("masukan jumlah uang pasien :"))
                                 if jumlah_uang < int(row['price_total']):
                                     print("uang paisen kurang ")
-                                    return False
                                 else:
                                     data_yangditambah = {
                                         'status':'done'
                                     }    
-                                    if row['queue_number'] == str(kode):
+                                    if row['queue_number'].lower() == str(kode):
                                         row.update(data_yangditambah) 
                                     with open(filename,mode='w',newline='') as file :
                                         writer = csv.DictWriter(file,fieldnames=header,delimiter=';')
@@ -58,22 +58,22 @@ def payment_code(filename):
                                         writer.writeheader()
                                         writer.writerows(data)
                                         return False
-                        else:    
-                            data_yangditambah = {
-                                    'status':'done',
-                            }    
-                            if row['queue_number'] == str(kode):
-                                row.update(data_yangditambah) 
-                            with open(filename,mode='w',newline='') as file :
-                                writer = csv.DictWriter(file,fieldnames=header,delimiter=';')
+                            else:   
+                                data_yangditambah = {
+                                        'status':'done'
+                                }    
+                                if row['queue_number'].lower() == str(kode):
+                                    row.update(data_yangditambah) 
+                                with open(filename,mode='w',newline='') as write :
+                                    writer = csv.DictWriter(write,fieldnames=header,delimiter=';')
 
-                                writer.writeheader()
-                                writer.writerows(data)
-                                return False
-                    elif pay == "n":
-                        exit()
-                    else:
-                        print("mohon masukan input yang sesuai ")
+                                    writer.writeheader()
+                                    writer.writerows(data)
+                                    return False
+                        elif pay == "n":
+                            exit()
+                        else:
+                            print("mohon masukan input yang sesuai ")
                 else:
                     queue_found = False
 
@@ -82,7 +82,4 @@ def payment_code(filename):
                 
             
 
-
-
-
-
+#
