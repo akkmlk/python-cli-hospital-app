@@ -108,15 +108,17 @@ def update_receptionist():
 
 def delete_receptionist(receptionist_id):
     data = read_all_data()
-    new_data = [row for row in data if row['id'] != str(receptionist_id)]
+    new_data = [row for row in data if not (row['id'] == str(receptionist_id) and row['role'] == 'receptionis')]
+    
     if len(new_data) == len(data):
-        print(f"Data dengan ID {receptionist_id} tidak ditemukan.")
-        return
-    with open(FILE_NAME, mode='w', newline='') as file:
-        writer = csv.DictWriter(file, fieldnames=HEADER[0].split(';'), delimiter=';')
-        writer.writeheader()
-        writer.writerows(new_data)
-    print("Data berhasil dihapus.")
+        print(f"Data dengan ID {receptionist_id} tidak ditemukan atau bukan receptionist.")
+    else:
+        with open(FILE_NAME, mode='w', newline='') as file:
+            writer = csv.DictWriter(file, fieldnames=HEADER[0].split(';'), delimiter=';')
+            writer.writeheader()
+            writer.writerows(new_data)
+        print("Data berhasil dihapus.")
+
 
 def main_resepsionis(admin_data):
     ensure_csv_exists()

@@ -136,18 +136,19 @@ def update_doctor():
         writer.writerows(data)
     print("Data berhasil diperbarui.")
 
-
 def delete_doctor(doctor_id):
     data = read_all_data()
-    new_data = [row for row in data if row['id'] != str(doctor_id)]
+    new_data = [row for row in data if not (row['id'] == str(doctor_id) and row['role'] == 'doctor')]
+    
     if len(new_data) == len(data):
-        print(f"Data dengan ID {doctor_id} tidak ditemukan.")
-        return
-    with open(FILE_NAME, mode='w', newline='') as file:
-        writer = csv.DictWriter(file, fieldnames=HEADER[0].split(';'), delimiter=';')
-        writer.writeheader()
-        writer.writerows(new_data)
-    print("Data berhasil dihapus.")
+        print(f"Data dengan ID {doctor_id} tidak ditemukan atau bukan dokter.")
+    else:
+        with open(FILE_NAME, mode='w', newline='') as file:
+            writer = csv.DictWriter(file, fieldnames=HEADER[0].split(';'), delimiter=';')
+            writer.writeheader()
+            writer.writerows(new_data)
+        print("Data berhasil dihapus.")
+
 
 
 def main_doctor(admin_data):
