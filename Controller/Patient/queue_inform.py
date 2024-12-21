@@ -13,7 +13,7 @@ def queue_reader(filename, patient_data):
         print("-"*162)
         for row in reader:
             print(f"{row['id']:<5}{'|':<2}{row['queue_number']:<14}{'|':<2}{row['patient_id']:<10}{'|':<2}{row['doctor_id']:<10}{'|':<2}{row['payment_type']:<16}{'|':<3}{row['reason_visit']:<18}{'|':<2}{row['description']:<25}{'|':<2}{row['schedule_checked']:<14}{'|':<2}{row['price_total']:<20}{'|':<2}{row['status']:<10}|")
-           
+
         print("="*162)
 
         os.system('pause')

@@ -1,1 +1,7 @@
-id;queue_number;drug_name;price
+id;queue_number;medicine_name
+1;AJU002;Paracetamol
+2;AJU002;Oskadon
+3;AJU009;Oskadon
+4;AJU009;Paracetamol
+5;AJU009;OBH
+6;AJU009;Mixagrip

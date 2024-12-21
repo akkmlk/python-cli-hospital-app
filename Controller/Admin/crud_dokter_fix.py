@@ -59,7 +59,7 @@ def collect_doctor_input():
     data['phone_number'] = get_required_input("Masukkan nomor telepon: ")
     data['address'] = get_required_input("Masukkan alamat: ")
     data['religion'] = get_required_input("Masukkan agama: ")
-    data['gender'] = get_required_input("Masukkan jenis kelamin (L/P): ", choices=['L', 'P'])
+    data['gender'] = get_required_input("Masukkan jenis kelamin (M/W): ", choices=['M', 'W'])
     data['place_birth'] = get_required_input("Masukkan tempat lahir: ")
     data['date_birth'] = validate_date(get_required_input("Masukkan tanggal lahir (dd-mm-yyyy): "))
     data['last_education'] = get_required_input("Masukkan pendidikan terakhir: ")
@@ -157,7 +157,8 @@ def delete_doctor(doctor_id):
         writer.writerows(new_data)
     print("Data berhasil dihapus.")
 
-if __name__ == '__main__':
+
+def main_doctor(admin_data):
     ensure_csv_exists()
     while True:
         print("\nMenu:")
@@ -165,7 +166,7 @@ if __name__ == '__main__':
         print("2. Lihat data dokter")
         print("3. Perbarui data dokter")
         print("4. Hapus data dokter")
-        print("5. Keluar")
+        print("5. Dashboard")
 
         pilihan = input("Pilih menu: ")
 
@@ -180,6 +181,8 @@ if __name__ == '__main__':
             doctor_id = input("Masukkan ID dokter yang akan dihapus: ")
             delete_doctor(doctor_id)
         elif pilihan == '5':
-            break
+            os.system('cls')
+            import dashboard_admin
+            dashboard_admin.menu_admin(admin_data)
         else:
             print("Pilihan tidak valid, silakan coba lagi.")
