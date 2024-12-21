@@ -1,7 +1,8 @@
 import csv
 import os
 from datetime import datetime
-from crud_dokter_fix import validate_date
+from crud_dokter_fix import validate_date, read_all_data, get_next_id, get_required_input
+
 
 FILE_NAME = 'Database/resepsionis.csv'
 HEADER = [
@@ -13,28 +14,7 @@ def ensure_csv_exists():
         with open(FILE_NAME, mode='w', newline='') as file:
             writer = csv.writer(file, delimiter=';')
             writer.writerow(HEADER[0].split(';'))
-
-def read_all_data():
-    ensure_csv_exists()
-    with open(FILE_NAME, mode='r') as file:
-        reader = csv.DictReader(file, delimiter=';')
-        return list(reader)
-
-def get_next_id():
-    data = read_all_data()
-    valid_ids = [int(row['id']) for row in data if row['id'].isdigit()]
-    return max(valid_ids, default=0) + 1
-
-def get_required_input(prompt, choices=None):
-    while True:
-        value = input(prompt)
-        if value == '':
-            print("Input tidak boleh kosong. Silakan coba lagi.")
-        elif choices and value not in choices:
-            print(f"Pilihan tidak valid. Pilih salah satu dari: {', '.join(choices)}.")
-        else:
-            return value
-
+            
 def collect_receptionist_input():
     data = {}
     data['name'] = get_required_input("Masukkan nama: ")
