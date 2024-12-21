@@ -2,7 +2,7 @@ import os
 import sys
 from crud_dokter_fix import *
 from crud_resepsionis_fix import *
-sys.path.insert(0, 'C://Document//University//Classroom//Semester1//Alpro//Tugas-Besar//hospital-app//Controller//Login')
+sys.path.insert(0, 'Controller//Login')
 
 def menu_admin(admin_data):
     print(f"Halo Admin, {admin_data['name']}")
