@@ -35,6 +35,7 @@ def question_have_account():
 
 def login ():
     os.system('cls')
+    print("Silahkan login")
     trial = 0
     filelog = 'Database/log.csv'
 
@@ -55,7 +56,7 @@ def login ():
                     if row['role'] == 'doctor':
                         detect_user = True
                         log_csv(filelog, username, password, "Berhasil")
-                        patient_data = temporary_login(row['id'], row['name'], row['username'], row['password'], row['phone_number'], row['address'], row['religion'], row['gender'], row['place_birth'], row['date_birth'], row['age_category'], row['married'], row['last_education'], row['blood_type'], row['bpjs'], row['role'], row['doctor_category'])
+                        patient_data = temporary_login(row['id'], row['name'], row['username'], row['password'], row['phone_number'], row['address'], row['religion'], row['gender'], row['place_birth'], row['date_birth'], row['last_education'], row['blood_type'], row['bpjs'], row['role'], row['doctor_category'])
                         print("login dokter berhasil")
                         dashboard_doctor.menu_doctor(patient_data)
                         os.system('pause')
@@ -63,23 +64,23 @@ def login ():
 
                     elif row['role'] == 'receptionis':
                         detect_user = True
-                        temporary_login( row['id'], row['name'], row['username'], row['password'], row['phone_number'], row['address'], row['religion'], row['gender'], row['place_birth'], row['date_birth'], row['age_category'], row['married'], row['last_education'], row['blood_type'], row['bpjs'], row['role'], row['doctor_category'])
+                        temporary_login( row['id'], row['name'], row['username'], row['password'], row['phone_number'], row['address'], row['religion'], row['gender'], row['place_birth'], row['date_birth'], row['last_education'], row['blood_type'], row['bpjs'], row['role'], row['doctor_category'])
                         log_csv(filelog, username, password, "Berhasil") 
-                        receptionis_data = temporary_login(row['id'], row['name'], row['username'], row['password'], row['phone_number'], row['address'], row['religion'], row['gender'], row['place_birth'], row['date_birth'], row['age_category'], row['married'], row['last_education'], row['blood_type'], row['bpjs'], row['role'], row['doctor_category'])
-                        dashboard_receptionis.menu_receptionis(receptionis_data)
+                        receptionis_data = temporary_login(row['id'], row['name'], row['username'], row['password'], row['phone_number'], row['address'], row['religion'], row['gender'], row['place_birth'], row['date_birth'], row['last_education'], row['blood_type'], row['bpjs'], row['role'], row['doctor_category'])
                         print("login resepsionis berhasil")
+                        dashboard_receptionis.menu_receptionis(receptionis_data)
                         return False                       
                     
                     elif row['role'] == 'admin':
                         detect_user = True
-                        temporary_login( row['id'], row['name'], row['username'], row['password'], row['phone_number'], row['address'], row['religion'], row['gender'], row['place_birth'], row['date_birth'], row['age_category'], row['married'], row['last_education'], row['blood_type'], row['bpjs'], row['role'], row['doctor_category'])
+                        temporary_login( row['id'], row['name'], row['username'], row['password'], row['phone_number'], row['address'], row['religion'], row['gender'], row['place_birth'], row['date_birth'], row['last_education'], row['blood_type'], row['bpjs'], row['role'], row['doctor_category'])
                         log_csv(filelog, username, password, "Berhasil")
-                        admin_data = temporary_login(row['id'], row['name'], row['username'], row['password'], row['phone_number'], row['address'], row['religion'], row['gender'], row['place_birth'], row['date_birth'], row['age_category'], row['married'], row['last_education'], row['blood_type'], row['bpjs'], row['role'], row['doctor_category'])
+                        admin_data = temporary_login(row['id'], row['name'], row['username'], row['password'], row['phone_number'], row['address'], row['religion'], row['gender'], row['place_birth'], row['date_birth'], row['last_education'], row['blood_type'], row['bpjs'], row['role'], row['doctor_category'])
                         print("login admin berhasil")
                         dashboard_admin.menu_admin(admin_data)
                         return False
                     elif row['role'] == 'patient':
-                        patient_data = temporary_login( row['id'], row['name'], row['username'], row['password'], row['phone_number'], row['address'], row['religion'], row['gender'], row['place_birth'], row['date_birth'], row['age_category'], row['married'], row['last_education'], row['blood_type'], row['bpjs'], row['role'], row['doctor_category'])
+                        patient_data = temporary_login( row['id'], row['name'], row['username'], row['password'], row['phone_number'], row['address'], row['religion'], row['gender'], row['place_birth'], row['date_birth'], row['last_education'], row['blood_type'], row['bpjs'], row['role'], row['doctor_category'])
                         detect_user = True
                         log_csv(filelog, username, password, "Berhasil")
                         print("login pasien berhasil")
@@ -121,7 +122,7 @@ def log_csv(filename, username, password, status):
             
             writer.writerows(data)
 
-def temporary_login(id, name, username, password,phone_number,address,religion,gender,place_birth,date_birth,age_category,married,last_education,blood_type,bpjs,role,doctor_category):
+def temporary_login(id, name, username, password,phone_number,address,religion,gender,place_birth,date_birth,last_education,blood_type,bpjs,role,doctor_category):
     patient_data = {
         'id' : id,
         'name' : name,
@@ -133,8 +134,6 @@ def temporary_login(id, name, username, password,phone_number,address,religion,g
         'gender' : gender,
         'place_birth' : place_birth,
         'date_birth' : date_birth,
-        'age_category' : age_category,
-        'married' : married,
         'last_education' : last_education,
         'blood_type' : blood_type,
         'bpjs' : bpjs,

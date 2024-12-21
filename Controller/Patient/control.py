@@ -20,14 +20,6 @@ def show_control(patient_data):
         if control_found == False:
             print("Kamu tidak memiliki jadwal kontrol!")
 
-        choosed_choice = input("Kembali ke dashboard? (Y/N) : ").lower()
-        while True:
-            if choosed_choice == "y":
-                os.system('cls')
-                dashboard_patient.menu_patient(patient_data)
-                return False
-            else:
-                show_control(patient_data)
-                return False
-            
-            
+        os.system('pause')
+        os.system('cls')
+        dashboard_patient.menu_patient(patient_data)

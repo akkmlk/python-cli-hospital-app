@@ -1,40 +1,10 @@
 id;queue_number;patient_id;doctor_id;payment_type;reason_visit;description;schedule_checked;price_total;status
-1;AJU001;1;4;CASH;Mering;Parah;10-09-2023;1;verified
-2;AJU002;1;1;CASH;Mering;Parah;10-09-2023;;waiting
-3;AJU003;1;1;CASH;Mering;Parah;10-09-2023;;waiting
-4;AJU004;;2;93637923;Sakit Perut;Udah 2 hari;09-08-2021;;verified
-5;AJU005;;;CASH;sakit pinggang;-;09-01-2021;;waiting
-6;AJU006;;;CASH;sd;d;dsd;;waiting
-7;AJU007;;;CASH;sas;a;aksja;;waiting
-8;AJU008;;4;02837625772;Mules;;09-01-2025;;verified
-9;AJU009;1;2;837672738;;;08-27-2024;;verified
-10;AJU010;1;;CASH;;;09-23-2024;;waiting
-11;AJU011;1;4;CASH;;mau sehat;08-20-2024;;verified
-12;AJU012;1;;CASH;;;09-09-2021;;waiting
-13;AJU013;;;876738483;Sakit Tenggorokan;;09-28-2024;;waiting
-14;AJU014;;;CASH;aakjs;asj;09-02-2024;;waiting
-15;AJU015;;;;meriang;;08-09-2025;;waiting
-16;AJU016;;;97632772;Sakit perut;udh 2 hari;20-08-2024;;waiting
-17;AJU017;1;;98763273829;;;27-08-2025;;waiting
-18;AJU018;1;;CASH;blood_check;;27-09-2026;;waiting
-19;AJU019;1;;87352689;urine_test;;26-08-2024;;waiting
-20;AJU020;1;;35266732;consultation;Aku lagi galau banget pak;07-10-2027;;waiting21
-21;AJU021;1;;293827429;blood_check;;27-06-2025;;waiting
-22;AJU022;1;;037623772;blood_check;;27-06-2024;30000;waiting
-23;AJU023;1;;082362673;blood_check;;20-09-2025;30000;waiting
-24;AJU024;1;;91873652678378;blood_check;;29-02-2024;30000;waiting
-25;AJU025;1;;CASH;urine_test;;04-06-2027;80000;waiting
-26;AJU026;1;;382774627492;consultation;Iki error id, aku pusing error. perlu bantuan psikologi;28-06-2024;200000;waiting
-27;AJU027;;;CASH;Sakit Perut;;29-10-2024;;waiting
-28;AJU028;1;;CASH;Sakit Perut;;28-09-2021;;waiting
-29;AJU029;1;;28372892847672;Sakit Kepala;;09-10-2025;;waiting
-30;AJU030;1;;CASH;Sakit Perut;;18-07-2025;;waiting
-31;AJU031;1;;937862747;consultation;;19-02-2024;200000;waiting
-32;AJU032;1;;8726472942;Demam;;18-12-2024;;waiting
-33;AJU033;1;;CASH;consultation;Aku mau sembuh dari sakit hati;10-05-2025;200000;done
-34;AJU034;1;;9284627489;Sakit Mata;Sudah demam 3 hari;10-10-2029;;waiting
-35;AJU035;1;;28745268942;Demam Parah;Udh 10 hari;20-12-2024;;waiting
-36;AJU036;1;;CASH;blood_check;;10-10-2024;30000;waiting
-37;AJU037;1;;CASH;urine_test;;09-10-2024;80000;waiting
-38;AJU038;1;;CASH;consultation;;09-10-2024;200000;waiting
-39;AJU039;1;4;CASH;Sakit Pinggang;;04-10-2024;;done
+1;AJU001;8;4;CASH;Dendam dosen kalkulus;Aku dendam dia tapi dia engga;10-10-1010;150000;done
+2;AJU002;10;4;CASH;Sakit Kepala;;19-10-2025;30000;done
+3;AJU003;10;6;CASH;Jantung Lecet;;19-10-2025;30000;done
+4;AJU004;10;4;018387624767;Sakit Pundah;;21-10-2025;20000;done
+5;AJU005;1;9;CASH;blood_check;;19-01-2025;30000;done
+6;AJU006;1;;CASH;consultation;Gamau;20-10-2026;200000;waiting
+7;AJU007;10;4;CASH;Meriang;;26-01-2027;40000;done
+8;AJU008;10;9;0183781635716;Jatuh dari motor;;29-01-2027;90000;done
+9;AJU009;1;4;CASH;Batuk;;09-10-2028;25000;done

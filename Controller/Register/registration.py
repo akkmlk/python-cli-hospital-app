@@ -26,6 +26,7 @@ def regist(filename):
     with open(filename, mode='r', newline='') as file:
         reader = csv.DictReader(file, delimiter=';')
         users = list(reader)
+        header = reader.fieldnames
         
         for row in users:
             if username == row['username']:                  
@@ -41,11 +42,11 @@ def regist(filename):
         'password': password,
         'phone_number': phone,
         'date_birth': birth,
-        'role' : 'patient'
+        'role': "patient",
     }
     
     with open(filename, mode='a', newline='') as file:
-        header = ['id', 'username', 'password', 'phone_number', 'date_birth','role']
+        header = ['id', 'username', 'password', 'phone_number', 'date_birth', 'role']
         writer = csv.DictWriter(file, fieldnames=reader.fieldnames, delimiter=';')
 
         if not file_exists:

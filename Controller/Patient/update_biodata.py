@@ -80,7 +80,6 @@ def update(filename, patient_data):
     print(f"Jenis Kelamin : {patient_data['gender']}")
     print(f"Tempat Lahir : {patient_data['place_birth']}")
     print(f"Tanggal Lahir : {patient_data['date_birth']}")
-    print(f"Sudah Nikah? : {patient_data['married']}")
     print(f"Pendidikan Terakhir : {patient_data['last_education']}")
     print(f"Golongan Darah : {patient_data['blood_type']}")
     print(f"BPJS : {patient_data['bpjs']}")
@@ -93,7 +92,6 @@ def update(filename, patient_data):
     data['religion'] = data_input("Masukkan agama: ")
     data['gender'] = input_gender() 
     data['place_birth'] = data_input("Masukkan tempat lahir: ")
-    # data['birth_date'] = data_input("Masukkan tanggal lahir: ")
     data['married'] = relation()
     data['last_education'] = data_input("Masukkan pendidikan terakhir: ")
     data['blood_type'] = blood()
@@ -107,7 +105,6 @@ def update(filename, patient_data):
         row['religion'] = data['religion']
         row['gender'] = data['gender']
         row['place_birth'] = data['place_birth']
-        row['age_category'] = data['age_category']
         row['last_education'] = data['last_education']
         row['blood_type'] = data['blood_type']
         row['bpjs'] = data['bpjs']

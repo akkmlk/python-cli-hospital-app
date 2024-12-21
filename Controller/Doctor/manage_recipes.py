@@ -17,7 +17,7 @@ def input_medicine_recipe(queue_data, doctor_data):
         medicine_list.append({
             'id' : id,
             'queue_number' : queue_data['queue_number'],
-            'medicine_name' : medicine_name,
+            'medicine_name' : medicine_name
         })
         id += 1
         question = input("Obatnya sudah cukup? (Y/N) : ").lower()

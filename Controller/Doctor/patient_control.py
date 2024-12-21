@@ -45,7 +45,7 @@ def select_queue_number(doctor_data, option):
         print("-"*171)
         queue_found = False
         for queue in queue_list:
-            if queue['queue_number'].lower() == input_queue_number and queue['status'] == "verified":
+            if queue['queue_number'].lower() == input_queue_number and queue['status'] == "verified" and queue['doctor_id'] == doctor_data['id']:
                 queue_found = True
                 print(f"{queue['queue_number']:<20}{'|':<2}{queue['patient_id']:<20}{'|':<2}{queue['doctor_id']:<20}{'|':<2}{queue['payment_type']:<20}{queue['reason_visit']:<20}{queue['schedule_checked']:<20}{queue['price_total']:<20}{queue['status']:<20}")
                 print("="*171)
@@ -69,35 +69,51 @@ def add_control_schedule(queue_data, doctor_data):
             while True:
                 room_selected = input("Masukkan ruangan : ")
                 if room_selected != "":
-                    with open('Database/control.csv', mode='r') as file:
-                        reader = csv.DictReader(file, delimiter=';')
-                        headers = reader.fieldnames
-                        control_list = list(reader)
-
-                    with open('Database/control.csv', mode='a', newline='') as write:
-                        writer = csv.DictWriter(write, fieldnames=headers, delimiter=';')
-
-                        new_data_control = {
-                            'id' : increment.id(control_list),
-                            'control_number' : increment.control_number(control_list),
-                            'doctor_id' : queue_data['doctor_id'],
-                            'patient_id' : queue_data['patient_id'],
-                            'control_schedule' : schedule_selected,
-                            'room' : room_selected
-                        }
-                        writer.writerow(new_data_control)
-                    print("Jadwal control berhasil dibuat!\n")
-
-                    choosed_choice = input("Buat jadwal lagi? (Y/N) : ").lower()
                     while True:
-                        if choosed_choice == "y":
-                            add_control_schedule(queue_data, doctor_data)
-                            return False
+                        price_total = input("Masukkan biaya control : ")
+                        if queue_data['payment_type'] == "CASH":
+                            if price_total != "":
+                                submit_control(queue_data, doctor_data, schedule_selected, room_selected, price_total)
+                                return False
+                            else:
+                                print("Biaya tidak boleh kosong")
                         else:
-                            os.system('cls')
-                            dashboard_doctor.menu_doctor(doctor_data)
+                            submit_control(queue_data, doctor_data, schedule_selected, room_selected, 0)
                             return False
                 else:
                     print("Room tidak boleh kosong!")
         else:
             print("Jadwal control tidak boleh kosong!")
+
+def submit_control(queue_data, doctor_data, schedule_selected, room_selected, price_total):
+    with open('Database/control.csv', mode='r') as file:
+        reader = csv.DictReader(file, delimiter=';')
+        headers = reader.fieldnames
+        control_list = list(reader)
+
+    with open('Database/control.csv', mode='a', newline='') as write:
+        writer = csv.DictWriter(write, fieldnames=headers, delimiter=';')
+
+        new_data_control = {
+            'id' : increment.id(control_list),
+            'control_number' : increment.control_number(control_list),
+            'doctor_id' : queue_data['doctor_id'],
+            'patient_id' : queue_data['patient_id'],
+            'control_schedule' : schedule_selected,
+            'room' : room_selected,
+            'price_total' : price_total,
+            'payment_type' : queue_data['payment_type'],
+            'status' : 'waiting'
+        }
+        writer.writerow(new_data_control)
+    print("Jadwal control berhasil dibuat!\n")
+
+    choosed_choice = input("Buat jadwal lagi? (Y/N) : ").lower()
+    while True:
+        if choosed_choice == "y":
+            add_control_schedule(queue_data, doctor_data)
+            return False
+        else:
+            os.system('cls')
+            dashboard_doctor.menu_doctor(doctor_data)
+            return False

@@ -15,10 +15,10 @@ def menu_admin(admin_data):
     while True:
         choosed_menu = str(input("Pilih menu : "))
         if choosed_menu == "1":
-            main_doctor()
+            main_doctor(admin_data)
             return False
         elif choosed_menu == "2":
-            main_resepsionis()
+            main_resepsionis(admin_data)
             return False
         elif choosed_menu == "0":
             import login
