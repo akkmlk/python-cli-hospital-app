@@ -66,6 +66,7 @@ def create_receptionist(data):
         writer.writerow(data)
     print("Data berhasil ditambahkan.")
 
+
 def read_receptionist():
     data = read_all_data()
     receptionist_data = [row for row in data if row['role'] == 'resepsionis']
@@ -114,7 +115,7 @@ def delete_receptionist(receptionist_id):
         writer.writerows(new_data)
     print("Data berhasil dihapus.")
 
-if __name__ == '__main__':
+def main_resepsionis(admin_data):
     ensure_csv_exists()
     while True:
         print("\nMenu:")
@@ -122,7 +123,7 @@ if __name__ == '__main__':
         print("2. Lihat data resepsionis")
         print("3. Perbarui data resepsionis")
         print("4. Hapus data resepsionis")
-        print("5. Keluar")
+        print("5. Dashboard")
 
         pilihan = input("Pilih menu: ")
 
@@ -137,6 +138,8 @@ if __name__ == '__main__':
             receptionist_id = input("Masukkan ID resepsionis yang akan dihapus: ")
             delete_receptionist(receptionist_id)
         elif pilihan == '5':
-            break
+            os.system('cls')
+            import dashboard_admin
+            dashboard_admin.menu_admin(admin_data)
         else:
             print("Pilihan tidak valid, silakan coba lagi.")

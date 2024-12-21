@@ -2,9 +2,10 @@ import os
 import csv
 import sys
 sys.path.insert(1, 'C://Document//University//Classroom//Semester1//Alpro//Tugas-Besar//hospital-app//Controller//Increment')
-# from Increment.increment_queue import queue_number
-# from Increment.increment_queue import queue_id
+sys.path.insert(0, 'C://Document//University//Classroom//Semester1//Alpro//Tugas-Besar//hospital-app//Controller//Admin')
 import increment
+import crud_dokter_fix
+import dashboard_patient
 
 def menu_medical_checkup(patient_data):
     menus = ['Cek Darah', 'Tes Urine', 'Konsultasi']
@@ -30,13 +31,16 @@ def menu_medical_checkup(patient_data):
 def form(reason_visit, patient_data):
     if reason_visit == "blood_check":
         print("Mau cek darah tanggal berapa?")
+        price_total = 30000
     elif reason_visit == "urine_test":
         print("Mau tes urine tanggal berapa?")
+        price_total = 80000
     elif reason_visit == "consultation":
         print("Mau konsultasi tanggal berapa?")
+        price_total = 200000
 
     while True:
-        schedule_selected = str(input("Masukkan tanggal nya (format dd-MM-yyyy) : "))
+        schedule_selected = crud_dokter_fix.validate_date(input("Masukkan tanggal nya (format dd-MM-yyyy) : "))
         
         if schedule_selected != "":
             description = ""
@@ -50,18 +54,22 @@ def form(reason_visit, patient_data):
             while True:
                 payment_type_choosed = str(input("Mau bayar pake apa? "))
                 if payment_type_choosed == "1":
-                    submit_application(reason_visit, schedule_selected, description, "CASH", patient_data)
+                    submit_application(reason_visit, schedule_selected, description, "CASH", price_total, patient_data)
                     return False
                 elif payment_type_choosed == "2":
-                    bpjs_number = str(input("Tuliskan nomor BPJS kamu : "))
-                    submit_application(reason_visit, schedule_selected, description, bpjs_number, patient_data)
-                    return False
+                    while True:
+                        bpjs_number = str(input("Tuliskan nomor BPJS kamu : "))
+                        if bpjs_number == "":
+                            print("No BPJS tidak boleh kosong")
+                        else:
+                            submit_application(reason_visit, schedule_selected, description, bpjs_number, price_total, patient_data)
+                            return False
                 else:
                     print("Silahkan gunakan pembayaran yang tersedia!")
         else:
             print("Masukkan tanggal yang diinginkan!")
 
-def submit_application(reason_visit, schedule_selected, description, payment, patient_data):
+def submit_application(reason_visit, schedule_selected, description, payment, price_total, patient_data):
     with open('Database/queue.csv', mode='r', newline='') as file:
         reader = csv.DictReader(file, delimiter=';')
         headers = reader.fieldnames
@@ -76,9 +84,13 @@ def submit_application(reason_visit, schedule_selected, description, payment, pa
             'schedule_checked' : schedule_selected,
             'payment_type' : payment,
             'reason_visit' : reason_visit,
+            'price_total' : price_total,
             'status' : 'waiting',
         }
         writer = csv.DictWriter(write, fieldnames=headers, delimiter=';')
         writer.writerow(new_queue_data)
 
     print("Pengajuan berhasil dikirim, verifikasi sedang dilakukan!")
+    os.system('pause')
+    os.system('cls')
+    dashboard_patient.menu_patient(patient_data)
