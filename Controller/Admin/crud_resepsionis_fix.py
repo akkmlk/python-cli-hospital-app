@@ -1,7 +1,7 @@
 import csv
 import os
 from datetime import datetime
-from crud_dokter_fix import validate_date, read_all_data, get_next_id, get_required_input
+from crud_dokter_fix import validate_date, read_all_data, get_next_id, get_required_input, ensure_csv_exists
 
 
 FILE_NAME = 'Database/user.csv'
@@ -9,12 +9,7 @@ HEADER = [
     'id;name;username;password;phone_number;address;religion;gender;place_birth;date_birth;last_education;blood_type;bpjs;role;doctor_category'
 ]
 
-def ensure_csv_exists():
-    if not os.path.exists(FILE_NAME):
-        with open(FILE_NAME, mode='w', newline='') as file:
-            writer = csv.writer(file, delimiter=';')
-            writer.writerow(HEADER[0].split(';'))
-            
+
 def collect_receptionist_input():
     data = {}
     data['name'] = get_required_input("Masukkan nama: ")
