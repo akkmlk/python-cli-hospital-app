@@ -2,7 +2,11 @@ import os
 from medical_treatment import *
 from medical_checkup import *
 from control import *
+from request_history import patient_list
 from queue_inform import queue_reader
+from update_biodata import update
+import sys
+sys.path.insert(0, 'C://Document//University//Classroom//Semester1//Alpro//Tugas-Besar//hospital-app//Controller//Login')
 
 def menu_patient(patient_data):
     print(f"Halo Pasien, {patient_data['name']}")
@@ -27,13 +31,14 @@ def menu_patient(patient_data):
             queue_reader('Database/queue.csv', patient_data)
             return False
         elif choosed_menu == "5":
-            print("riwayat")
+            patient_list('Database/queue.csv', patient_data)
             return False
         elif choosed_menu == "6":
-            print("biodata")
+            update('Database/user.csv', patient_data)
             return False
         elif choosed_menu == "0":
-            print("keluar")
+            import login
+            login.login()
             return False
         else:
             print("Oops! Menu tidak tersedia")
