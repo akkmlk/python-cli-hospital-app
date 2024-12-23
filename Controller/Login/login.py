@@ -2,11 +2,11 @@ import csv
 import os
 import datetime as dt
 import sys
-sys.path.insert(0, 'C://Document//University//Classroom//Semester1//Alpro//Tugas-Besar//hospital-app//Controller//Patient')
-sys.path.insert(0, 'C://Document//University//Classroom//Semester1//Alpro//Tugas-Besar//hospital-app//Controller//Doctor')
-sys.path.insert(0, 'C://Document//University//Classroom//Semester1//Alpro//Tugas-Besar//hospital-app//Controller//Admin')
-sys.path.insert(0, 'C://Document//University//Classroom//Semester1//Alpro//Tugas-Besar//hospital-app//Controller//Receptionis')
-sys.path.insert(0, 'C://Document//University//Classroom//Semester1//Alpro//Tugas-Besar//hospital-app//Controller//Register')
+sys.path.insert(0, 'C://tugas ngoding//python-cli-hospital-app//Controller//Patient')
+sys.path.insert(0, 'C://tugas ngoding//python-cli-hospital-app//Controller//Doctor')
+sys.path.insert(0, 'C://tugas ngoding//python-cli-hospital-app//Controller//Admin')
+sys.path.insert(0, 'C://tugas ngoding//python-cli-hospital-app//Controller//Receptionis')
+sys.path.insert(0, 'C://tugas ngoding//python-cli-hospital-app//Controller//Register')
 import dashboard_patient
 import dashboard_doctor
 import dashboard_admin

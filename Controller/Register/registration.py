@@ -2,9 +2,11 @@ import csv
 import datetime as dt
 import os
 import sys
-sys.path.insert(0, 'C://Document//University//Classroom//Semester1//Alpro//Tugas-Besar//hospital-app//Controller//Login')
-sys.path.insert(0, 'C://Document//University//Classroom//Semester1//Alpro//Tugas-Besar//hospital-app//Controller//Admin')
+sys.path.insert(0, 'C://tugas ngoding//python-cli-hospital-app//Controller//Login')
+sys.path.insert(0, 'C://tugas ngoding//python-cli-hospital-app//Controller//Admin')
+sys.path.insert(0, 'C://tugas ngoding//python-cli-hospital-app//Controller//Increment')
 import crud_dokter_fix
+import increment
 
 def get_required_input(prompt):
     while True:
@@ -34,10 +36,10 @@ def regist(filename):
                 return regist(filename)
             
                     
-    new_id = len(users) + 1 
+    # new_id = len(users) + 1 
     # birth = dt.datetime.strftime("%d-%m-%Y")
     akun = {
-        'id' : new_id,
+        'id' : increment.id(users),
         'username': username,
         'password': password,
         'phone_number': phone,
@@ -54,7 +56,5 @@ def regist(filename):
         writer.writerow(akun)
 
     print("Registrasi berhasil!")
-    print("Anda telah membuat akun baru")
-    print("ID Anda: ", new_id)
     import login
     login.login()

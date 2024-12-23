@@ -1,39 +1,14 @@
 import csv
 import os
 from datetime import datetime
-from crud_dokter_fix import validate_date
+from crud_dokter_fix import validate_date, read_all_data, get_next_id, get_required_input, ensure_csv_exists
 
-FILE_NAME = 'Database/resepsionis.csv'
+
+FILE_NAME = 'Database/user.csv'
 HEADER = [
-    'id;name;username;password;phone_number;address;religion;gender;place_birth;date_birth;last_education;blood_type;bpjs;role'
+    'id;name;username;password;phone_number;address;religion;gender;place_birth;date_birth;last_education;blood_type;bpjs;role;doctor_category'
 ]
 
-def ensure_csv_exists():
-    if not os.path.exists(FILE_NAME):
-        with open(FILE_NAME, mode='w', newline='') as file:
-            writer = csv.writer(file, delimiter=';')
-            writer.writerow(HEADER[0].split(';'))
-
-def read_all_data():
-    ensure_csv_exists()
-    with open(FILE_NAME, mode='r') as file:
-        reader = csv.DictReader(file, delimiter=';')
-        return list(reader)
-
-def get_next_id():
-    data = read_all_data()
-    valid_ids = [int(row['id']) for row in data if row['id'].isdigit()]
-    return max(valid_ids, default=0) + 1
-
-def get_required_input(prompt, choices=None):
-    while True:
-        value = input(prompt)
-        if value == '':
-            print("Input tidak boleh kosong. Silakan coba lagi.")
-        elif choices and value not in choices:
-            print(f"Pilihan tidak valid. Pilih salah satu dari: {', '.join(choices)}.")
-        else:
-            return value
 
 def collect_receptionist_input():
     data = {}
@@ -60,7 +35,7 @@ def collect_update_input():
     updated_data['address'] = input("Masukkan alamat baru (kosongkan jika tidak ingin mengubah): ")
     updated_data['religion'] = input("Masukkan agama baru (kosongkan jika tidak ingin mengubah): ")
     updated_data['gender'] = input("Masukkan jenis kelamin baru (Laki-laki/Perempuan, kosongkan jika tidak ingin mengubah): ")
-    if updated_data['gender'] and updated_data['gender'] not in ['Laki-laki', 'Perempuan']:
+    if updated_data['gender'] and updated_data['gender'] not in ['M', 'W']:
         print("Pilihan gender tidak valid. Perubahan diabaikan.")
         updated_data.pop('gender')
     updated_data['place_birth'] = input("Masukkan tempat lahir baru (kosongkan jika tidak ingin mengubah): ")
@@ -78,7 +53,7 @@ def collect_update_input():
 def create_receptionist(data):
     ensure_csv_exists()
     data['id'] = str(get_next_id())
-    data['role'] = 'resepsionis'
+    data['role'] = 'receptionis'
     if data['date_birth'] != '':
         data['date_birth'] = validate_date(data['date_birth'])
     with open(FILE_NAME, mode='a', newline='') as file:
@@ -89,7 +64,7 @@ def create_receptionist(data):
 
 def read_receptionist():
     data = read_all_data()
-    receptionist_data = [row for row in data if row['role'] == 'resepsionis']
+    receptionist_data = [row for row in data if row['role'] == 'receptionis']
     if len(receptionist_data) == 0:
         print("Tidak ada data resepsionis.")
         return
@@ -106,6 +81,9 @@ def update_receptionist():
     found = False
     for row in data:
         if row['id'] == str(receptionist_id):
+            if row['role'] != 'receptionis':
+                print(f"ID {receptionist_id} bukan data dokter.")
+                return            
             found = True
             print(f"Data ditemukan untuk ID {receptionist_id}. Lanjutkan dengan memperbarui.")
             updated_data = collect_update_input()
@@ -125,15 +103,17 @@ def update_receptionist():
 
 def delete_receptionist(receptionist_id):
     data = read_all_data()
-    new_data = [row for row in data if row['id'] != str(receptionist_id)]
+    new_data = [row for row in data if not (row['id'] == str(receptionist_id) and row['role'] == 'receptionis')]
+    
     if len(new_data) == len(data):
-        print(f"Data dengan ID {receptionist_id} tidak ditemukan.")
-        return
-    with open(FILE_NAME, mode='w', newline='') as file:
-        writer = csv.DictWriter(file, fieldnames=HEADER[0].split(';'), delimiter=';')
-        writer.writeheader()
-        writer.writerows(new_data)
-    print("Data berhasil dihapus.")
+        print(f"Data dengan ID {receptionist_id} tidak ditemukan atau bukan receptionist.")
+    else:
+        with open(FILE_NAME, mode='w', newline='') as file:
+            writer = csv.DictWriter(file, fieldnames=HEADER[0].split(';'), delimiter=';')
+            writer.writeheader()
+            writer.writerows(new_data)
+        print("Data berhasil dihapus.")
+
 
 def main_resepsionis(admin_data):
     ensure_csv_exists()

@@ -36,20 +36,12 @@ def get_required_input(prompt, choices=None):
 
 def validate_date(date_str):
     while True:
-        date_parts = date_str.split('-')
-        if len(date_parts) == 3 and all(part.isdigit() for part in date_parts):
-            day, month, year = map(int, date_parts)
-            if 1 <= day <= 31 and 1 <= month <= 12 and year > 0:
-                if month in [1, 3, 5, 7, 8, 10, 12] and day <= 31:
-                    return f"{day:02d}-{month:02d}-{year}"
-                elif month in [4, 6, 9, 11] and day <= 30:
-                    return f"{day:02d}-{month:02d}-{year}"
-                elif month == 2:
-                    is_leap_year = (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0)
-                    if (is_leap_year and day <= 29) or (not is_leap_year and day <= 28):
-                        return f"{day:02d}-{month:02d}-{year}"
+        day, month, year = map(int, date_str.split('-')) if '-' in date_str else (0, 0, 0)
+        if 1 <= month <= 12 and 1 <= day <= (29 if month == 2 and ((year % 4 == 0 and year % 100 != 0) or year % 400 == 0) else 28 if month == 2 else 30 if month in [4, 6, 9, 11] else 31):
+            return f"{day:02d}-{month:02d}-{year}"
         print("Format tanggal tidak valid. Harap masukkan tanggal dalam format dd-mm-yyyy.")
         date_str = input("Masukkan tanggal lahir (dd-mm-yyyy): ")
+
 
 def collect_doctor_input():
     data = {}
@@ -144,18 +136,19 @@ def update_doctor():
         writer.writerows(data)
     print("Data berhasil diperbarui.")
 
-
 def delete_doctor(doctor_id):
     data = read_all_data()
-    new_data = [row for row in data if row['id'] != str(doctor_id)]
+    new_data = [row for row in data if not (row['id'] == str(doctor_id) and row['role'] == 'doctor')]
+    
     if len(new_data) == len(data):
-        print(f"Data dengan ID {doctor_id} tidak ditemukan.")
-        return
-    with open(FILE_NAME, mode='w', newline='') as file:
-        writer = csv.DictWriter(file, fieldnames=HEADER[0].split(';'), delimiter=';')
-        writer.writeheader()
-        writer.writerows(new_data)
-    print("Data berhasil dihapus.")
+        print(f"Data dengan ID {doctor_id} tidak ditemukan atau bukan dokter.")
+    else:
+        with open(FILE_NAME, mode='w', newline='') as file:
+            writer = csv.DictWriter(file, fieldnames=HEADER[0].split(';'), delimiter=';')
+            writer.writeheader()
+            writer.writerows(new_data)
+        print("Data berhasil dihapus.")
+
 
 
 def main_doctor(admin_data):
@@ -186,3 +179,4 @@ def main_doctor(admin_data):
             dashboard_admin.menu_admin(admin_data)
         else:
             print("Pilihan tidak valid, silakan coba lagi.")
+            

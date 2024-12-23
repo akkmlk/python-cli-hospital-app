@@ -6,7 +6,7 @@ from request_history import patient_list
 from queue_inform import queue_reader
 from update_biodata import update
 import sys
-sys.path.insert(0, 'C://Document//University//Classroom//Semester1//Alpro//Tugas-Besar//hospital-app//Controller//Login')
+sys.path.insert(0, 'C://tugas ngoding//python-cli-hospital-app//Controller//Login')
 
 def menu_patient(patient_data):
     print(f"Halo Pasien, {patient_data['name']}")
