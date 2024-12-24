@@ -1,7 +1,7 @@
 import sys
 from manage_request import manage_request
 from serve_payments import serve_payment
-sys.path.insert(0, 'C://tugas ngoding//python-cli-hospital-app//Controller//Login')
+sys.path.insert(0, 'Controller//Login')
 
 def menu_receptionis(receptionis_data):
     print(f"Halo Resepsionis, {receptionis_data['name']}")
