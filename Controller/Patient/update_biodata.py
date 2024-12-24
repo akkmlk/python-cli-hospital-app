@@ -41,9 +41,9 @@ def input_gender():
     while True:
         gender_input =data_input("Masukkan jenis kelamin (M/W): ").upper()
         if gender_input == 'M':
-            return 'Laki-laki'
+            return 'M'
         elif gender_input == 'W':
-            return 'Perempuan'
+            return 'W'
         else:
             print("Input yang dimasukkan tidak sesuai. ")
 
