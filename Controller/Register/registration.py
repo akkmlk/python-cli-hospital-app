@@ -2,9 +2,9 @@ import csv
 import datetime as dt
 import os
 import sys
-sys.path.insert(0, 'C://tugas ngoding//python-cli-hospital-app//Controller//Login')
-sys.path.insert(0, 'C://tugas ngoding//python-cli-hospital-app//Controller//Admin')
-sys.path.insert(0, 'C://tugas ngoding//python-cli-hospital-app//Controller//Increment')
+sys.path.insert(0, 'Controller//Login')
+sys.path.insert(0, 'Controller//Admin')
+sys.path.insert(0, 'Controller//Increment')
 import crud_dokter_fix
 import increment
 
@@ -23,7 +23,7 @@ def regist(filename):
     phone = get_required_input("Masukkan Nomor HP: ")
     birth = crud_dokter_fix.validate_date(get_required_input("Masukkan Tanggal Lahir (DD-MM-YYYY): "))
 
-    users = []
+    # users = []
 
     with open(filename, mode='r', newline='') as file:
         reader = csv.DictReader(file, delimiter=';')

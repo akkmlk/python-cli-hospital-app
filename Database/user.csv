@@ -2,4 +2,7 @@ id;name;username;password;phone_number;address;religion;gender;place_birth;date_
 1;akmal;kamal;kamal12;08197763;kronggahan;islam;M;Ciamis;25-07-2005;SMK;O;27382398;patient;
 2;samsu;samsu;samsu12;08197763;kronggahan;islam;M;Ciamis;09-07-1990;S3 Keresepsionisan;O;;receptionis;
 3;dudung;dudung;dudung12;08197763;kronggahan;islam;M;Ciamis;09-07-1995;S3 Keadminan;O;;admin;
-4;Jarwo;jarwo;jarwo;0829283623;Trihanggo;Islam;M;08-08-1989;08-08-1989;S3 Kedokteran UII;AB;9817238230;doctor;UMUM1
+4;Jarwo;jarwo;jarwo;0829283623;Trihanggo;Islam;M;bantul;08-08-1989;S3 Kedokteran UII;AB;9817238230;doctor;UMUM1
+5;santri gila;santri;santri12;08926341732;orang serang;islam kah?;M;tanggerang;19-05-2009;smm;O;627356172;patient;
+6;ganis magelang;ganis;ganis12;0829163;muntilan;kejawen;M;kulon progo;28-07-2007;sml;O;0283622;patient;
+
