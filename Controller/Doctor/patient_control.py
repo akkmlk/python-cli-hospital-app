@@ -1,8 +1,8 @@
 import csv
 import sys
 import os
-sys.path.insert(0, 'C://Document//University//Classroom//Semester1//Alpro//Tugas-Besar//hospital-app//Controller//Increment')
-sys.path.insert(0, 'C://Document//University//Classroom//Semester1//Alpro//Tugas-Besar//hospital-app//Controller//Admin')
+sys.path.insert(0, 'C://tugas ngoding//python-cli-hospital-app//Controller//Increment')
+sys.path.insert(0, 'C://tugas ngoding//python-cli-hospital-app//Controller//Admin')
 import crud_dokter_fix
 import increment
 import dashboard_doctor
